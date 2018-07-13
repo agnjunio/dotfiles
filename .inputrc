@@ -1,0 +1,6 @@
+set completion-ignore-case On
+"\e[A":history-substring-search-backward 
+"\e[B":history-substring-search-forward
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e\C-m": "\C-asudo \C-e"

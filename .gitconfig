@@ -1,0 +1,19 @@
+[user]
+	name = Agnaldo Junior
+	email = agnaldo.junior01@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = auto
+[alias]
+	s = status
+	co = checkout
+	br = branch
+	cp = cherry-pick
+	ll = log --oneline
+[aliases]
+
+[diff]
+	submodule = log
+[pager]
+	branch = 

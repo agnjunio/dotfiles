@@ -1,0 +1,12 @@
+*.swp
+*.swo
+*~
+.vim/sessions
+.vim/plug/
+*.pyc
+.weechat/logs
+.weechat/weechat.log
+.bin/python
+.bin/python-config
+.lsp/*
+!.lsp/.gitkeep
