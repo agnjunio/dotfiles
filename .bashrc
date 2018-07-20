@@ -46,3 +46,8 @@ stty -ixon
 # Aliases
 source ~/.aliases
 
+vim() {
+  local CMD=vim
+  type nvim &> /dev/null && CMD=nvim
+  command $CMD $@
+}

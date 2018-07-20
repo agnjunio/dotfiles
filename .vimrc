@@ -128,7 +128,9 @@ colorscheme oceanblack256
 nnoremap <F2> :set hlsearch!<CR>
 
 " strings to use in 'list' mode
-set listchars=eol:¬,tab:»-,trail:·,extends:>,precedes:<,space:·
+if ('nvim')
+  set listchars=eol:¬,tab:»-,trail:·,extends:>,precedes:<,space:·
+endif
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
 
