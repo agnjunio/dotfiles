@@ -1,3 +1,5 @@
+source $HOME/.bashrc
+
 # Used for setting user's interactive shell configuration and executing commands, will be sourced when starting as an interactive shell.
 
 # If you come from bash you might have to change your $PATH.

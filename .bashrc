@@ -7,10 +7,10 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-BROWSER=/usr/bin/google-chrome-stable
-TERMINAL=/usr/bin/termite
-EDITOR=/usr/bin/vim
-VISUAL=vim
+BROWSER=google-chrome-stable
+TERMINAL=termite
+EDITOR=nvim
+VISUAL=nvim
 
 # GO
 #export PATH="$PATH:~/go/bin"
@@ -18,6 +18,7 @@ VISUAL=vim
 
 # JAVA
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # NVM
 nvmimport="/usr/share/nvm/init-nvm.sh"
@@ -37,8 +38,11 @@ export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator:~/Android/
 #AOSP
 export AOSP_VOL=~/aosp
 
-#ROM Tools
-#source ~/projects/rom-tools/env.sh
+#YARN
+export PATH=$PATH:~/.yarn/bin
+
+#RUST
+source $HOME/.cargo/env || true
 
 # Disable terminal key catching
 stty -ixon
