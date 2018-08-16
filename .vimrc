@@ -113,7 +113,7 @@ let g:airline_theme='murmur'
 " }
 
 " vim-colorschemes {
-colorscheme oceanblack256
+colorscheme ag1
 :source ~/.vim/setcolors.vim
 " }
 
