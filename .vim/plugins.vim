@@ -42,12 +42,12 @@ Plug 'vim-airline/vim-airline-themes'
   " au FileType go :ALEEnable
 " }
 
+Plug 'ervandew/supertab'
 if has('nvim')
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': '/bin/bash install.sh'
     \ }
-  Plug 'ervandew/supertab'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
