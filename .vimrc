@@ -129,7 +129,9 @@ nnoremap <F2> :set hlsearch!<CR>
 
 " strings to use in 'list' mode
 if ('nvim')
-  set listchars=eol:¬,tab:»-,trail:·,extends:>,precedes:<,space:·
+  set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,space:␣
+else
+  set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,nbsp:␣
 endif
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
