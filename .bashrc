@@ -12,6 +12,12 @@ TERMINAL=termite
 EDITOR=nvim
 VISUAL=nvim
 
+function source_if_exists() {
+  if [[ -f $1 ]]; then
+    source $1
+  fi
+}
+
 # GO
 #export PATH="$PATH:~/go/bin"
 #export GOPATH=$(go env GOPATH)
@@ -22,12 +28,7 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 
 # NVM
 nvmimport="/usr/share/nvm/init-nvm.sh"
-
-if [[ -f "$nvmimport" ]]; then
-    source "$nvmimport"
-else
-    echo "Could not source ${nvmimport}."
-fi
+source_if_exists $nvmimport
 
 #ANDROID
 export ANDROID_SDK_ROOT=~/Android/Sdk
@@ -42,13 +43,13 @@ export AOSP_VOL=~/aosp
 export PATH=$PATH:~/.yarn/bin
 
 #RUST
-source $HOME/.cargo/env || true
+source_if_exists $HOME/.cargo/env
 
 # Disable terminal key catching
 stty -ixon
 
 # Aliases
-source ~/.aliases
+source_if_exists $HOME/.aliases
 
 vim() {
   local CMD=vim
