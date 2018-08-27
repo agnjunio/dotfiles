@@ -17,3 +17,5 @@
 !.config/awesome-copycats
 !.config/nvim/
 !.config/termite/
+.lsp/*
+!.lsp/.gitkeep

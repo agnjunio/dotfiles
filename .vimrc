@@ -4,10 +4,10 @@ let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 
 if has('nvim')
-    let g:custom_lsp_plugin = "LanguageClient"
+  let g:custom_lsp_plugin = "LanguageClient"
 else
-    let g:custom_lsp_plugin = "vim-lsp"
-  endif
+  let g:custom_lsp_plugin = "vim-lsp"
+endif
 
 " Plugin settings
 source ~/.vim/plugins.vim
@@ -42,18 +42,13 @@ endif
 "enables wild mode (https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu)"
 set wildmenu
 
-"highlight search results"
-set hlsearch
-
-"incremental search (search as you press keys)"
-set incsearch
-
-"case insensitive search"
-set ignorecase
+"search
+set hlsearch "highlight search results"
+set incsearch "incremental search (search as you press keys)"
+set ignorecase "case insensitive search"
 set smartcase
 
-"always show cursor's current position"
-set ruler
+set ruler "always show cursor's current position"
 
 "command bar height"
 set cmdheight=2
@@ -62,12 +57,9 @@ set cmdheight=2
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-"enables regex"
-set magic
-
-"hightlight brackets when using cursor"
-"set showmatch
-set mat=10
+set magic " Set magic on, for regular expressions
+set showmatch " Show matching bracets when text indicator is over them
+set mat=10 " How many tenths of second to blink
 
 "line number"
 set number
@@ -85,22 +77,22 @@ set laststatus=2
 
 "status line message"
 if has('statusline')
-" Broken down into easily includeable segments "
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+  " Broken down into easily includeable segments "
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
-set statusline=%<%f\ " Filename"
-set statusline+=%w%h%m%r " Options"
-set statusline+=\[%{&ff}/%Y] " filetype"
-"set statusline+=\[%{getcwd()}] "" currentdir"
-set statusline+=%{fugitive#statusline()} " Git Hotness"
-set statusline+=%=%-14.(%l,%c%V%)\%p%% " Right aligned file nav info"
+  set statusline=%<%f\ " Filename"
+  set statusline+=%w%h%m%r " Options"
+  set statusline+=\[%{&ff}/%Y] " filetype"
+  "set statusline+=\[%{getcwd()}] "" currentdir"
+  set statusline+=%{fugitive#statusline()} " Git Hotness"
+  set statusline+=%=%-14.(%l,%c%V%)\%p%% " Right aligned file nav info"
 endif
 
 augroup project
-autocmd!
-autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
 
 " ------- "
@@ -172,15 +164,6 @@ nnoremap <leader>w :w !sudo tee %<CR>
 " Fast replace command
 nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
 
-" Fugitive {
-  nnoremap <silent> <leader>gs :Gstatus<CR>
-  nnoremap <silent> <leader>gd :Gdiff<CR>
-  nnoremap <silent> <leader>gc :Gcommit<CR>
-  nnoremap <silent> <leader>gb :Gblame<CR>
-  nnoremap <silent> <leader>gl :Glog<CR>
-  nnoremap <silent> <leader>gp :Git push<CR>
-"}
-
 " NERDtree {
   nnoremap <silent> <leader><tab> :NERDTreeToggle<CR>
 
@@ -233,8 +216,8 @@ nnoremap <C-F> /
 
 " GitGutter {
   nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
-  nnoremap <silent> <leader>gh :GitGutterLineHighlightsToggle<CR>
-  nnoremap <silent> <leader>ga :GitGutterToggle<CR>
+  " nnoremap <silent> <leader>gh :GitGutterLineHighlightsToggle<CR>
+  " nnoremap <silent> <leader>ga :GitGutterToggle<CR>
 " }
 
 " Copy to X CLIPBOARD
@@ -276,7 +259,46 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
   nnoremap <leader>R :SyntasticReset<CR>
 " }
 
+" ------------------------ "
+" Language Client Settings "
+" ------------------------ "
+
+" ALE - Asynchronous Lint Engine
+let g:ale_enabled = 1
+let g:ale_completion_enabled = 1
+
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+"let g:ale_open_list = 1
+
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {
+      \   'gitcommit': ['gitlint'],
+      \   'python': ['pyls'],
+      \   'cpp': [],
+      \   'c': ['clangtidy'],
+      \}
+autocmd FileType gitcommit let g:ale_sign_column_always = 1
+
+" These are fallbacks for language clients
+nnoremap <Leader>rj :ALEGoToDefinition<CR>
+nnoremap <Leader>rf :ALEFindReferences<CR>
+nnoremap <Leader>rh :ALEHover<CR>
+" These aren't supported by ALE
+" nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
+" nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
+
 if g:custom_lsp_plugin == "vim-lsp"
+  let g:lsp_signs_enabled = 1 "enable signs
+  let g:lsp_diagnostics_echo_cursor = 1 "enable echo under cursor when in normal mode
+
+  let g:lsp_signs_error = {'text': '⤫'}
+  let g:lsp_signs_warning = {'text': '⚠'}
+  let g:lsp_signs_hint = {'text': 'ℹ'}
 
   let g:lsp_log_verbose = 0
   let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
@@ -294,6 +316,14 @@ if g:custom_lsp_plugin == "vim-lsp"
         \ })
   endif
 
+  if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls', '--log-file', g:custom_pyls_log_path]},
+        \ 'whitelist': ['python'],
+        \ })
+  endif
+
   if executable('rustup')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
@@ -306,13 +336,15 @@ if g:custom_lsp_plugin == "vim-lsp"
   let g:lsp_signs_enabled = 1         " enable signs
   let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-  " LSP Keybindings
   nnoremap <Leader>rj :LspDefinition<CR>
   nnoremap <Leader>ri :LspImplementation<CR>
   nnoremap <Leader>rf :LspReferences<CR>
-  " TODO add other Keybindings for vim/vim-lsp
+  nnoremap <Leader>rh :LspHover<CR>
+  nnoremap <Leader>rr :LspRename<CR>
+  nnoremap <Leader>rs :LspDocumentSymbol<CR>
+  nnoremap <Leader>ff :LspDocumentFormat<CR>
 
-else " LanguageClient_neovim
+elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
 
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
@@ -335,7 +367,6 @@ else " LanguageClient_neovim
   set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
-  " LSP KeyBindings
   nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
   nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
   nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
@@ -344,6 +375,4 @@ else " LanguageClient_neovim
   nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
 
 endif
-
-" } LSP configs
 

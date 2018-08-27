@@ -11,38 +11,9 @@ Plug 'kien/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
-
-" ALE (Async Lint Engine) configs {
-  Plug 'w0rp/ale'
-
-  let g:ale_enabled = 1
-
-  let g:ale_sign_error = '⤫'
-  let g:ale_sign_warning = '⚠'
-
-  let g:ale_set_loclist = 0
-  "let g:ale_set_quickfix = 1
-  "let g:ale_open_list = 1
-
-  " Enable integration with airline.
-  let g:airline#extensions#ale#enabled = 1
-  let g:ale_linters = {
-  \   'gitcommit': ['gitlint'],
-  \   'python': ['flake8'],
-  \   'cpp': [],
-  \   'c': ['clangtidy'],
-  \}
-  autocmd FileType gitcommit let g:ale_sign_column_always = 1
-  "let g:ale_gitcommit_gitlint_options = '-C ~/.tcl-patcher/gitlint.ini'
-
-  " Ctrl-j/k to navigate through ALI Errors/Warnings
-  " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  " nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-  " au FileType go :ALEEnable
-" }
-
+Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
+
 if has('nvim')
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
