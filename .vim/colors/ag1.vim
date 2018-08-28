@@ -27,6 +27,7 @@ highlight CursorIM       cterm=bold           ctermfg=15  ctermbg=152
 "highlight CursorColumn
 "highlight CursorLine
 
+
 highlight Directory      ctermfg=5            ctermbg=None
 
 highlight DiffAdd        cterm=none           ctermfg=15  ctermbg=22
@@ -56,8 +57,8 @@ highlight IncSearch      cterm=reverse        ctermfg=151 ctermbg=None
 
 highlight SpecialKey     ctermfg=60           ctermbg=None
 
-"highlight SpellBad
-"highlight SpellCap
+highlight SpellBad       ctermfg=15           ctermbg=131
+highlight SpellCap       ctermfg=15           ctermbg=110
 "highlight SpellLocal
 "highlight SpellRare
 
