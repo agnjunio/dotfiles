@@ -48,7 +48,7 @@ highlight FoldColumn     cterm=none           ctermfg=152 ctermbg=66
 
 highlight Search         cterm=none           ctermfg=16  ctermbg=66
 highlight IncSearch      cterm=reverse        ctermfg=151 ctermbg=None
-"highlight MatchParen
+highlight MatchParen     cterm=none           ctermfg=7   ctermbg=110
 
 "highlight PMenu
 "highlight PMenuSBar
