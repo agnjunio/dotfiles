@@ -13,6 +13,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
+Plug 'rhysd/vim-clang-format'
 
 if has('nvim')
   Plug 'autozimu/LanguageClient-neovim', {
