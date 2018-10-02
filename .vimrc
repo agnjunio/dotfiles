@@ -22,9 +22,18 @@ set nocompatible
 "history size 1000"
 set history=1000
 
-"file regonition"
-filetype plugin on
-filetype indent on
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+    " Use filetype detection and file-based automatic indenting.
+    filetype plugin indent on
+
+    " Use actual tab chars in Makefiles.
+    autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+endif
+"tab management
+set expandtab
+set softtabstop=2
+set shiftwidth=2 "> key will move 2 spaces
 
 "reload file if it is opened by an external program while editing"
 set autoread
