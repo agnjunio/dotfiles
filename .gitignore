@@ -12,10 +12,5 @@
 .tmux/resurrect
 .bin/python
 .bin/python-config
-.config/*
-!.cofig/awesome
-!.config/awesome-copycats
-!.config/nvim/
-!.config/termite/
 .lsp/*
 !.lsp/.gitkeep
