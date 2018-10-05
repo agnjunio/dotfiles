@@ -51,6 +51,9 @@ source_if_exists $HOME/.cargo/env
 # Disable terminal key catching
 stty -ixon
 
+# Bin
+export PATH=$HOME/.bin:$PATH
+
 # Aliases
 source_if_exists $HOME/.aliases
 

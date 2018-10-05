@@ -39,33 +39,6 @@ sync_dot_files() {
   return 0
 }
 
-install_vim_plugins() {
-  local ycm_path=.vim/bundle/youcompleteme
-  local ycm_core_lib=${ycm_path}/third_party/ycmd/ycm_core.so
-  local log=ycm_compile.log
-
-  if [ -f $ycm_core_lib ]; then
-    echo "YouCompleteMe: ycm_core.so already exists. Skipping..."
-    return 0
-  fi
-
-  echo "YouCompleteMe: Trying to compile native YouCompleteMe support libs..."
-  echo "NOTE: If it fails you\'ll must check the logs and install it manually"
-
-  pushd $ycm_path
-  ./install.py --clang-completer --system-libclang > $log
-  local result=$?
-  if [ $result -eq 0 ]; then
-   echo "YouCompleteMe: Build succeeded!"
-   rm ${log}
-  else
-    echo "YouCompleteMe: Build failed. Check ${log} for details."
-  fi
-  popd
-
-  return $result
-}
-
 install_submodules() {
   echo "Fetching submodules..."
   git submodule update --init --recursive &&
@@ -74,8 +47,6 @@ install_submodules() {
   .tmux/plugins/tpm/scripts/install_plugins.sh &&
   echo "Installing powerline fonts..."
   .powerline/fonts/install.sh
-  echo "Installing vim plugins..."
-  install_vim_plugins
 }
 
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
