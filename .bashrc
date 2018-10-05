@@ -42,6 +42,9 @@ export AOSP_VOL=~/aosp
 #YARN
 export PATH=$PATH:~/.yarn/bin
 
+#Chromium
+export PATH=$PATH:$HOME/projects/chromium/depot_tools
+
 #RUST
 source_if_exists $HOME/.cargo/env
 
