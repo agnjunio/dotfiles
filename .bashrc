@@ -18,6 +18,9 @@ function source_if_exists() {
   fi
 }
 
+# Bin
+export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
+
 # GO
 #export PATH="$PATH:~/go/bin"
 #export GOPATH=$(go env GOPATH)
@@ -36,9 +39,6 @@ export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:~/Android/Sdk/platform-tools:~/Android/Sdk/emulator:~/Android/Sdk/tools/bin
 #source /etc/profile.d/android-ndk.sh
 
-#AOSP
-export AOSP_VOL=~/aosp
-
 #YARN
 export PATH=$PATH:~/.yarn/bin
 
@@ -50,9 +50,6 @@ source_if_exists $HOME/.cargo/env
 
 # Disable terminal key catching
 stty -ixon
-
-# Bin
-export PATH=$HOME/.bin:$PATH
 
 # Aliases
 source_if_exists $HOME/.aliases
