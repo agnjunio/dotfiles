@@ -1,22 +1,14 @@
-# Used for setting user's interactive shell configuration and executing commands, will be sourced when starting as an interactive shell.
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+function source_if_exists() {
+  if [[ -f $1 ]]; then
+    source $1
+  fi
+}
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Theme
 ZSH_THEME="agnoster"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -35,13 +27,13 @@ ZSH_THEME="agnoster"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
- DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -72,33 +64,10 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
- export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
- #if [[ -n $SSH_CONNECTION ]]; then
-   #export EDITOR='vim'
- #else
-   #export EDITOR='mvim'
- #fi
-
-# Compilation flags
- export ARCHFLAGS="-arch x86_64"
-
-# ssh
- export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-# Key bindings
+# Disable terminal key catching
+stty -ixon
 
 # Alt-Enter = prepends 'sudo ' to the command
 bindkey -s "^[^m" '^asudo ^e'
@@ -111,4 +80,3 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^H' insert-last-command-output
 
-source $HOME/.aliases
