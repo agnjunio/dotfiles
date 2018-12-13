@@ -238,6 +238,9 @@ map <leader>pp :r!xsel -p<CR>
 map <leader>ps :r!xsel -s<CR>
 map <leader>pb :r!xsel -b<CR>
 
+" Set netrw cache
+let g:netrw_home=expand('~/.cache/vim')
+
 " ----------- "
 " Code syntax "
 " ----------- "
