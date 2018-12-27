@@ -1,5 +1,5 @@
 {
   "initializationOptions": {
-    "cacheDirectory": "~/.lsp/cquery-cache"
+    "cacheDirectory": "/tmp/cquery"
   }
 }
