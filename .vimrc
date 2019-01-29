@@ -295,15 +295,6 @@ let g:ale_linters = {
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
-" These are fallbacks for language clients
-nnoremap <Leader>rj :ALEGoToDefinition<CR>
-nnoremap <Leader>rf :ALEFindReferences<CR>
-nnoremap <Leader>rh :ALEHover<CR>
-" These aren't supported by ALE
-" nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
-" nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
-" nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
-
 if g:custom_lsp_plugin == "vim-lsp"
   let g:lsp_signs_enabled = 1 "enable signs
   let g:lsp_diagnostics_echo_cursor = 1 "enable echo under cursor when in normal mode
