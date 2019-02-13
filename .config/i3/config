@@ -149,3 +149,4 @@ assign [class="^(?i)mattermost$"] 3
 assign [class="^(?i)slack$"] 3
 
 for_window [title="Picture in picture"] floating enable; border pixel 3
+for_window [title="Calculator"] floating enable; border pixel 1
