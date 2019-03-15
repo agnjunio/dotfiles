@@ -154,6 +154,7 @@ vnoremap <S-Up> :m '<-2<CR>gv=gv
 nnoremap <leader><Right> :tabnext<CR>
 nnoremap <leader><Left> :tabprevious<CR>
 nnoremap <leader>q :tabclose<CR>
+nnoremap <leader>t :tabnew#<CR>
 
 " Ctrl-S to save file (assuming terminal doesn't catch the keys)
 " If the current buffer has never been saved, it will have no name,
