@@ -230,14 +230,15 @@ nnoremap <C-F> /
   " nnoremap <silent> <leader>ga :GitGutterToggle<CR>
 " }
 
+
 " Copy to X CLIPBOARD
-nnoremap <silent> <leader>cc :w !xsel -i -b<CR>
-map <leader>cp :w !xsel -i -p<CR>
-map <leader>cs :w !xsel -i -s<CR>
+map <leader>cc :w !xclip -selection c<CR>
+map <leader>cp :w !xclip -selection p<CR>
+map <leader>cs :w !xclip -selection s<CR>
 " Paste from X CLIPBOARD
-map <leader>pp :r!xsel -p<CR>
-map <leader>ps :r!xsel -s<CR>
-map <leader>pb :r!xsel -b<CR>
+map <leader>pc :r!xclip -o -selection c<CR>
+map <leader>pp :r!xclip -o -selection p<CR>
+map <leader>ps :r!xclip -o -selection s<CR>
 
 " Set netrw cache
 let g:netrw_home=expand('~/.cache/vim')
