@@ -151,3 +151,11 @@ assign [class="^(?i)slack$"] 3
 for_window [title="Picture in picture"] floating enable; border pixel 3
 for_window [title="Calculator"] floating enable; border pixel 1
 for_window [title="ALSA Mixer"] floating enable; border pixel 1
+
+# Desktop screenshot
+bindsym --release Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+# Choose window screenshot
+bindsym --release Mod1+Sys_Req exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -u -e 'xclip -selection c -t image/png < $f'"
+# Selection screenshot
+bindsym --release Shift+Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
+
