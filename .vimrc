@@ -373,6 +373,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
   nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
   nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
   nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
   nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
