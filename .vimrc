@@ -153,6 +153,8 @@ vnoremap <S-Up> :m '<-2<CR>gv=gv
 " navigate between multiple open files
 nnoremap <leader><Right> :tabnext<CR>
 nnoremap <leader><Left> :tabprevious<CR>
+nnoremap <leader><Up> :tabmove +1<CR>
+nnoremap <leader><Down> :tabmove -1<CR>
 nnoremap <leader>q :tabclose<CR>
 nnoremap <leader>t :tabnew#<CR>
 
