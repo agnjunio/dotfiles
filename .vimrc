@@ -99,11 +99,6 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\%p%% " Right aligned file nav info"
 endif
 
-augroup project
-  autocmd!
-  autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-augroup END
-
 " ------- "
 " Theming "
 " ------- "
@@ -280,7 +275,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 " ------------------------ "
 
 " ALE - Asynchronous Lint Engine
-let g:ale_enabled = 1
+let g:ale_enabled = 0
 let g:ale_completion_enabled = 0
 
 let g:ale_sign_error = '⤫'
@@ -293,7 +288,7 @@ let g:ale_set_quickfix = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \   'gitcommit': ['gitlint'],
-      \   'python': ['pyls'],
+      \   'python': ['pycodestyle'],
       \   'cpp': [],
       \   'c': ['clangtidy'],
       \}
@@ -382,6 +377,8 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
   nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
 
+" Auto format on save
+"  autocmd BufWritePre *.py :call LanguageClient#textDocument_formatting_sync()
 endif
 
 " vim-clang-format configs {

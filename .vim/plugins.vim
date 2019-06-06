@@ -22,6 +22,7 @@ if has('nvim')
     \ }
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'junegunn/fzf'
 else
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
