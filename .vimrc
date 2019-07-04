@@ -2,6 +2,7 @@
 let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
+let g:custom_golangserver_log_path = expand('~/.lsp/go-langserver.log')
 
 if has('nvim')
   let g:custom_lsp_plugin = "LanguageClient"
@@ -362,6 +363,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
     \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
     \ 'sh':     ['bash-language-server', 'start'],
     \ 'lua':    ['lua-lsp'],
+    \ 'go':     ['go-langserver', '-logfile', g:custom_golangserver_log_path, '-gocodecompletion'],
   \ }
 
   let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
