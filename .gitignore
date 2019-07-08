@@ -10,7 +10,5 @@
 .tmux/sidebar/*
 !.tmux/plugins/tpm
 .tmux/resurrect
-.bin/python
-.bin/python-config
 .lsp/*
 !.lsp/.gitkeep
