@@ -1,7 +1,6 @@
 # Only run these is NO_RCS is not set
 if [[ ! -o norcs ]]; then
   export TERMINAL=termite
-  export BROWSER=google-chrome-stable
   export EDITOR=nvim
   export VISUAL=nvim
   export SSH_KEY_PATH="~/.ssh/rsa_id"

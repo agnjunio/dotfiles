@@ -132,14 +132,13 @@ bindsym $mod+t layout tabbed
 bindsym $mod+s layout toggle all
 
 bindsym $mod+l exec i3lock -c 000000 -i ~/.config/i3/i3lock.png
-bindsym $mod+w exec x-www-browser
+bindsym $mod+w exec xdg-open about:
 bindsym $mod+e exec xdg-open $HOME
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Tab focus left
 
-exec --no-startup-id mattermost-desktop
-exec --no-startup-id ~/.bin/bionic-daemons
+exec --no-startup-id nm-applet
 exec --no-startup-id i3-msg "workspace 3; layout tabbed; workspace 1;"
 
 assign [class="^(?i)atom$"] 2

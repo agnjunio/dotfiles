@@ -78,7 +78,6 @@ packages_graphics=(
 
 # AUR
 packages_aur=(
-    awesome-git
     ncurses5-compat-libs
     ttf-opensans
     ttf-raleway

@@ -1,6 +1,6 @@
 " High-level Settings
-let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
-let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
+let g:custom_cquery_cache_path = expand('~/.lsp/clangd-cache')
+let g:custom_cquery_log_path = expand('~/.lsp/clangd.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_golangserver_log_path = expand('~/.lsp/go-langserver.log')
 
@@ -307,10 +307,10 @@ if g:custom_lsp_plugin == "vim-lsp"
   let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
   let g:asyncomplete_log_file = expand('~/.lsp/asyncomplete.log')
 
-  if executable('cquery')
+  if executable('clangd')
      au User lsp_setup call lsp#register_server({
-        \ 'name': 'cquery',
-        \ 'cmd': {server_info->['cquery', '--log-file', g:custom_cquery_log_path]},
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '--log-file', g:custom_cquery_log_path]},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(
                 \ lsp#utils#find_nearest_parent_file_directory(
                 \ lsp#utils#get_buffer_path(), 'compile_commands.json'))},
@@ -358,8 +358,8 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
     \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-    \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path],
-    \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path],
+    \ 'c':      ['clangd'],
+    \ 'cpp':    ['clangd'],
     \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
     \ 'sh':     ['bash-language-server', 'start'],
     \ 'lua':    ['lua-lsp'],
