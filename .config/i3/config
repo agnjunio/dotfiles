@@ -122,7 +122,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status -c ~/.config/i3/i3status.conf
-        font Noto Mono for Powerline
+        font pango:Noto Mono for Powerline 9
 }
 
 # Ag1 stuff
