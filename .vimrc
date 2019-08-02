@@ -259,20 +259,6 @@ highlight ExtraWhitespace ctermbg=darkgrey guibg=darkgrey
 " Show trailing whitespace and spaces before a tab:
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-" Syntastic {
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
-  let g:loaded_syntastic_java_javac_checker = 1
-
-  nnoremap <leader>R :SyntasticReset<CR>
-" }
-
 " ------------------------ "
 " Language Client Settings "
 " ------------------------ "
