@@ -3,6 +3,8 @@ let g:custom_cquery_cache_path = expand('~/.lsp/clangd-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/clangd.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_golangserver_log_path = expand('~/.lsp/go-langserver.log')
+let g:custom_javascriptserver_log_path = expand('~/.lsp/javascript-typescript-langserver.log')
+let g:custom_vls_log_path = expand('~/.lsp/vls.log')
 
 if has('nvim')
   let g:custom_lsp_plugin = "LanguageClient"
@@ -335,10 +337,19 @@ if g:custom_lsp_plugin == "vim-lsp"
         \ })
   endif
 
+  if executable('javascript-typescript-stdio')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'javascript-typescript-stdio',
+        \ 'cmd': {server_info->['javascript-typescript-stdio', '--logfile', g:custom_javascriptserver_log_path, '-j']},
+        \ 'whitelist': ['javascript'],
+        \ })
+  endif
+
   let g:autofmt_autosave = 1
   let g:lsp_signs_enabled = 1         " enable signs
   let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
+  nnoremap <F5> :LspCodeAction<CR>
   nnoremap <Leader>rj :LspDefinition<CR>
   nnoremap <Leader>ri :LspImplementation<CR>
   nnoremap <Leader>rf :LspReferences<CR>
@@ -357,13 +368,14 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   set hidden
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
-    \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-    \ 'c':      ['clangd'],
-    \ 'cpp':    ['clangd'],
-    \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
-    \ 'sh':     ['bash-language-server', 'start'],
-    \ 'lua':    ['lua-lsp'],
-    \ 'go':     ['go-langserver', '-logfile', g:custom_golangserver_log_path, '-gocodecompletion'],
+    \ 'rust':       ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
+    \ 'c':          ['clangd'],
+    \ 'cpp':        ['clangd'],
+    \ 'javascript': ['javascript-typescript-stdio', '--logfile', g:custom_javascriptserver_log_path],
+    \ 'python':     ['pyls', '--log-file', g:custom_pyls_log_path],
+    \ 'sh':         ['bash-language-server', 'start'],
+    \ 'lua':        ['lua-lsp'],
+    \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path, '-gocodecompletion'],
   \ }
 
   let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
@@ -371,6 +383,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
+  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
   nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
   nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
   nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
