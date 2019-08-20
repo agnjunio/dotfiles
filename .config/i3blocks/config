@@ -1,0 +1,63 @@
+[disk]
+command=$HOME/.config/i3blocks/blocklets/disk
+DIR=/
+markup=pango
+interval=30
+
+[disk]
+command=$HOME/.config/i3blocks/blocklets/disk
+DIR=/srv
+markup=pango
+interval=30
+
+[memory]
+command=$HOME/.config/i3blocks/blocklets/memory
+markup=pango
+interval=30
+
+[iface]
+command=$HOME/.config/i3blocks/blocklets/iface
+markup=pango
+LABEL=
+IFACE=eth0
+interval=10
+color=#00FF00
+
+[iface]
+command=$HOME/.config/i3blocks/blocklets/iface
+markup=pango
+LABEL=
+IFACE=wlan0
+interval=10
+color=#00FF00
+
+[cpu_usage]
+command=$HOME/.config/i3blocks/blocklets/cpu_usage
+markup=pango
+interval=1
+
+[temperature]
+command=$HOME/.config/i3blocks/blocklets/temperature
+interval=10
+
+[battery2]
+command=$HOME/.config/i3blocks/blocklets/battery2
+markup=pango
+interval=5
+
+[volume-pulseaudio]
+command=$HOME/.config/i3blocks/blocklets/volume-pulseaudio
+interval=once
+signal=1
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+LONG_FORMAT="${SYMB} ${VOL}%"
+SHORT_FORMAT="${SYMB} ${VOL}%"
+DEFAULT_COLOR="#ffffff"
+MUTED_COLOR="#a0a0a0"
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=1
+
+[calendar]
+command=${button:-date "+   <b>%d/%m/%Y</b>    %H:%M:%S"} || google-chrome --app=https://calendar.google.com &
+interval=1
+markup=pango
