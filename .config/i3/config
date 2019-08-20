@@ -6,12 +6,12 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
+font pango:Noto Mono for Powerline 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -138,18 +138,21 @@ bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Tab focus left
 
+exec --no-startup-id ~/.config/i3/slideshow-bg.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id i3-msg "workspace 3; layout tabbed; workspace 1;"
 
 assign [class="^(?i)atom$"] 2
 assign [class="^(?i)google\-chrome(\-stable)?$$"] 3
 assign [class="^(?i)firefox$"] 3
+assign [class="^(?i)chromium$"] 3
 assign [class="^(?i)mattermost$"] 3
 assign [class="^(?i)slack$"] 3
 
 for_window [title="Picture in picture"] floating enable; border pixel 3
 for_window [title="Calculator"] floating enable; border pixel 1
 for_window [title="ALSA Mixer"] floating enable; border pixel 1
+for_window [class="^(?i)pavucontrol$"] floating enable; border pixel 1
 
 # Desktop screenshot
 bindsym --release Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
