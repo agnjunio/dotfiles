@@ -24,7 +24,9 @@ if [ "$1" = "-n" ] || [ "$2" = "-n" ]; then
     LOCAL_FLAG=""
 fi
 
-df -h -P $LOCAL_FLAG "$DIR" | awk -v label="   " -v alert_low=$ALERT_LOW '
+icon="<span font='Font Awesome 5 Free'> </span>"
+
+df -h -P $LOCAL_FLAG "$DIR" | awk -v label="$icon" -v alert_low=$ALERT_LOW '
 /\/.*/ {
 	# full text
   print label $6" ("$5" of "$2")"
