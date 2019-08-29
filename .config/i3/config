@@ -156,7 +156,8 @@ for_window [title="Picture in picture"] floating enable; border pixel 3
 for_window [title="Calculator"] floating enable; border pixel 1
 for_window [title="ALSA Mixer"] floating enable; border pixel 1
 for_window [class="^(?i)pavucontrol$"] floating enable; border pixel 1
-for_window [class="calendar.google.com"] floating enable; border pixel 1;
+for_window [class="calendar.google.com"] floating enable; border pixel 1
+for_window [class="^(?i)feh"] floating enable; border pixel 1
 
 for_window [window_role="pop-up"] floating enable;
 
