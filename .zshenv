@@ -19,4 +19,8 @@ if [[ ! -o norcs ]]; then
   path=($path ~/Android/Sdk/platform-tools ~/Android/Sdk/emulator ~/Android/Sdk/tools/bin)
 
   path=($path ~/.yarn/bin)
+
+  export GTK_IM_MODULE=ibus
+  export XMODIFIERS=@im=ibus
+  export QT_IM_MODULE=ibus
 fi
