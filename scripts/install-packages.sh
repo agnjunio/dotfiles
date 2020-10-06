@@ -74,6 +74,7 @@ packages_graphics=(
     breeze
     pavucontrol
     xdg-user-dirs
+    feh
     )
 
 # AUR

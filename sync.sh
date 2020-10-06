@@ -58,6 +58,5 @@ install_submodules &&
 sync_dot_files &&
 
 
-echo "Dotfiles synchronized successfully. Don't forget to crate a symlink to the wallpapper:"
-echo "ln -s <wallpapper.png> ~/.config/kscreenlocker_wallpapper.png"
+echo "Dotfiles synchronized successfully. Now fill your Wallpappers into ~/Pictures/Wallpappers. :)"
 unset bkpdir
