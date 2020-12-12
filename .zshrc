@@ -80,3 +80,4 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^H' insert-last-command-output
 
+source_if_exists /usr/share/nvm/init-nvm.sh
