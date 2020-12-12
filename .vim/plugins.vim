@@ -7,13 +7,14 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ddollar/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'kien/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'rhysd/vim-clang-format'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   Plug 'autozimu/LanguageClient-neovim', {
@@ -22,7 +23,7 @@ if has('nvim')
     \ }
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'junegunn/fzf'
+  Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 else
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'

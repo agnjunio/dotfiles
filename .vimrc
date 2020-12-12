@@ -154,7 +154,7 @@ nnoremap <leader><Left> :tabprevious<CR>
 nnoremap <leader><Up> :tabmove +1<CR>
 nnoremap <leader><Down> :tabmove -1<CR>
 nnoremap <leader>q :tabclose<CR>
-nnoremap <leader>t :tabnew#<CR>
+nnoremap <leader>t :tabnew<CR>
 
 " Ctrl-S to save file (assuming terminal doesn't catch the keys)
 " If the current buffer has never been saved, it will have no name,
@@ -196,33 +196,12 @@ nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
   imap <C-_> <Plug>NERDCommenterInsert
 " }
 
-" ag {
-  " Ctrl-Shift-f calls Ag.vim
-  nnoremap <C-S-F> :Ag<space>
-  " <leader>ag calls Ag.vim with the word under cursor
+" ag
+" calls Ag.vim with the word under cursor
   nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
-"}
 
-" Normal search with ctrl f
-nnoremap <C-F> /
-
-" ctrlp {
-  let g:ctrlp_working_path_mode = '0'
-  let g:ctrlp_root_markers = ['.git', '.repo', '.pro', 'package.json', 'build.xml', 'main.ncl' ]
-
-  set wildignore+=LayoutTests/,PerformanceTests/,Websites/,*.un~'
-
-  let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git$\|\.hg$\|\.svn$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.class' }
-  let g:ctrlp_user_command = {
-    \ 'types': {
-      \ 1: ['.git', 'ag %s -l --nocolor --hidden -g "" --ignore node_modules --ignore bower_components'],
-      \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-      \ },
-    \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$\|\.java\$"'
-  \ }
-"}
+" FZF
+map <C-p> :FZF<CR>
 
 " GitGutter {
   nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
@@ -264,8 +243,9 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 " ------------------------ "
 
 " ALE - Asynchronous Lint Engine
-let g:ale_enabled = 0
+let g:ale_enabled = 1
 let g:ale_completion_enabled = 0
+let g:ale_fix_on_save = 1
 
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
@@ -280,6 +260,10 @@ let g:ale_linters = {
       \   'python': ['pycodestyle'],
       \   'cpp': [],
       \   'c': ['clangtidy'],
+      \   'go': ['golangci-lint', 'run'],
+      \}
+let g:ale_fixers = {
+      \   'go': ['gofmt'],
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
@@ -345,11 +329,15 @@ if g:custom_lsp_plugin == "vim-lsp"
   nnoremap <Leader>ff :LspDocumentFormat<CR>
 
 elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
-
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_smart_case = 1
   let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
   let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+  call deoplete#custom#source('LanguageClient',
+        \ 'min_pattern_length',
+        \ 2)
+  call deoplete#custom#option('sources', {
+        \ '_': ['ale', 'LanguageClient'],
+        \})
 
   set hidden
   let g:LanguageClient_autoStart = 1
@@ -364,7 +352,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
     \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path, '-gocodecompletion'],
   \ }
 
-  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+  let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings
   let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
   set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
