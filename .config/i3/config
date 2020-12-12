@@ -135,7 +135,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+s layout toggle all
 
 bindsym $mod+l exec i3lock -c 000000 -i ~/.config/i3/i3lock.png
-bindsym $mod+w exec xdg-open about:
+bindsym $mod+w exec gtk-launch $(xdg-settings get default-web-browser)
 bindsym $mod+e exec xdg-open $HOME
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
@@ -144,6 +144,8 @@ bindsym $mod+Tab focus left
 exec --no-startup-id ~/.config/i3/slideshow-bg.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id i3-msg "workspace 3; layout tabbed; workspace 1;"
+exec --no-startup-id setxkbmap br abnt2
+exec synergy
 
 assign [class="^(?i)atom$"] 2
 assign [class="^(?i)google\-chrome(\-stable)?$$"] 3
@@ -172,3 +174,7 @@ bindsym --release Shift+Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+
+# change brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10%
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10%
