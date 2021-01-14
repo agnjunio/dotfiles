@@ -33,6 +33,7 @@ if has("autocmd")
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 endif
+
 "tab management
 set expandtab
 set softtabstop=2
@@ -174,34 +175,19 @@ nnoremap <leader>w :w !sudo tee %<CR>
 " Fast replace command
 nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
 
-" NERDtree {
-  nnoremap <silent> <leader><tab> :NERDTreeToggle<CR>
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 0
+nmap <silent> <C-_> <Plug>NERDCommenterToggle
+vmap <silent> <C-_> <Plug>NERDCommenterToggle
+inoremap <C-_> <plug>NERDCommenterInsert
 
-  map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-  map <leader>e :NERDTreeFind<CR>
-  nmap <leader>nt :NERDTreeFind<CR>
-
-  let NERDTreeShowBookmarks=1
-  let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.bak', '\.o', '\.e', '\.obj']
-  let NERDTreeChDirMode=0
-  let NERDTreeQuitOnOpen=1
-  let NERDTreeShowHidden=1
-  let NERDTreeKeepTreeInNewTab=1
-"}
-
-" NERDCommenter {
-  let g:NERDCreateDefaultMappings = 0
-  nmap <silent> <C-_> <Plug>NERDCommenterToggle
-  vmap <silent> <C-_> <Plug>NERDCommenterToggle
-  imap <C-_> <Plug>NERDCommenterInsert
-" }
-
-" ag
 " calls Ag.vim with the word under cursor
-  nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
+nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
 
 " FZF
-map <C-p> :FZF<CR>
+noremap <C-p> :FZF<CR>
+nnoremap <leader>c :Commits<CR>
+nnoremap <leader>h :History<CR>
 
 " GitGutter {
   nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
@@ -260,10 +246,10 @@ let g:ale_linters = {
       \   'python': ['pycodestyle'],
       \   'cpp': [],
       \   'c': ['clangtidy'],
-      \   'go': ['golangci-lint', 'run'],
+      \   'go': ['golangci-lint'],
       \}
 let g:ale_fixers = {
-      \   'go': ['gofmt'],
+      \   'go': ['gofmt', 'goimports'],
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
@@ -320,7 +306,7 @@ if g:custom_lsp_plugin == "vim-lsp"
   let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
   nnoremap <F5> :LspCodeAction<CR>
-  nnoremap <Leader>rj :LspDefinition<CR>
+  nnoremap <Leader>rd :LspDefinition<CR>
   nnoremap <Leader>ri :LspImplementation<CR>
   nnoremap <Leader>rf :LspReferences<CR>
   nnoremap <Leader>rh :LspHover<CR>
@@ -335,9 +321,9 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   call deoplete#custom#source('LanguageClient',
         \ 'min_pattern_length',
         \ 2)
-  call deoplete#custom#option('sources', {
-        \ '_': ['ale', 'LanguageClient'],
-        \})
+  " call deoplete#custom#option('sources', {
+  "       \ '_': ['ale', 'LanguageClient'],
+  "       \})
 
   set hidden
   let g:LanguageClient_autoStart = 1
@@ -349,7 +335,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
     \ 'python':     ['pyls', '--log-file', g:custom_pyls_log_path],
     \ 'sh':         ['bash-language-server', 'start'],
     \ 'lua':        ['lua-lsp'],
-    \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path, '-gocodecompletion'],
+    \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path],
   \ }
 
   let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings
@@ -358,7 +344,7 @@ elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
   nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <Leader>rd :call LanguageClient_textDocument_definition()<CR>
   nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
   nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
   nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
@@ -379,3 +365,9 @@ endif
   autocmd FileType c ClangFormatAutoEnable
   autocmd BufWritePre *.cpp,*.hpp ClangFormat
 " }
+
+" Golang configs
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
