@@ -11,7 +11,7 @@ if [[ ! -o norcs ]]; then
   export GOPATH=$(go env GOPATH)
   path=($path ~/go/bin)
 
-  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+  export JAVA_HOME=/usr/lib/jvm/default
   export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
   export ANDROID_SDK_ROOT=~/Android/Sdk
