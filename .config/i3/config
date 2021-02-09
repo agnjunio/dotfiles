@@ -164,11 +164,11 @@ for_window [class="^(?i)feh"] floating enable; border pixel 1
 for_window [window_role="pop-up"] floating enable;
 
 # Desktop screenshot
-bindsym --release Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Print exec "scrot $(xdg-user-dir PICTURES)/Screenshots/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
 # Choose window screenshot
-bindsym --release Mod1+Sys_Req exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -u -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Mod1+Sys_Req exec "scrot $(xdg-user-dir PICTURES)/Screenshots/$(date --iso-8601='seconds').png -u -e 'xclip -selection c -t image/png < $f'"
 # Selection screenshot
-bindsym --release Shift+Print exec "scrot ${HOME}/Pictures/Screenshots/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
+bindsym --release Shift+Print exec "scrot $(xdg-user-dir PICTURES)/Screenshots/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
 
 # change volume or toggle mute
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
