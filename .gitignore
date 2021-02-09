@@ -8,7 +8,6 @@
 .weechat/weechat.log
 .tmux/plugins/*
 .tmux/sidebar/*
-!.tmux/plugins/tpm
 .tmux/resurrect
 .lsp/*
 !.lsp/.gitkeep

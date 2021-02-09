@@ -39,24 +39,9 @@ sync_dot_files() {
   return 0
 }
 
-install_submodules() {
-  echo "Fetching submodules..."
-  git submodule update --init --recursive &&
-  git submodule foreach git reset --hard &&
-  echo "Installing tmux plugins..."
-  .tmux/plugins/tpm/scripts/install_plugins.sh &&
-  echo "Installing powerline fonts..."
-  .powerline/fonts/install.sh
-}
-
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
 
-# Install submodules
-install_submodules &&
-
-# Sync plain/simple dot files/dirs
 sync_dot_files &&
 
-
-echo "Dotfiles synchronized successfully. Now fill your Wallpappers into ~/Pictures/Wallpappers. :)"
+echo "Dotfiles synchronized successfully."
 unset bkpdir

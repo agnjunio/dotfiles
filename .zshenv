@@ -1,3 +1,7 @@
+command_exists() {
+  command -v "$@" >/dev/null 2>&1
+}
+
 # Only run these is NO_RCS is not set
 if [[ ! -o norcs ]]; then
   export TERMINAL=termite
@@ -8,8 +12,10 @@ if [[ ! -o norcs ]]; then
   typeset -U path
   path=($path $HOME/.bin $HOME/.local/bin)
 
-  export GOPATH=$(go env GOPATH)
-  path=($path ~/go/bin)
+  command_exists go && {
+    export GOPATH=$(go env GOPATH)
+    path=($path ~/go/bin)
+  }
 
   export JAVA_HOME=/usr/lib/jvm/default
   export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
