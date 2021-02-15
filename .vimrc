@@ -3,14 +3,9 @@ let g:custom_cquery_cache_path = expand('~/.lsp/clangd-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/clangd.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_golangserver_log_path = expand('~/.lsp/go-langserver.log')
-let g:custom_javascriptserver_log_path = expand('~/.lsp/javascript-typescript-langserver.log')
+let g:custom_javascript_server_log_path = expand('~/.lsp/javascript-server.log')
+let g:custom_typescript_server_log_path = expand('~/.lsp/typescript-server.log')
 let g:custom_vls_log_path = expand('~/.lsp/vls.log')
-
-if has('nvim')
-  let g:custom_lsp_plugin = "LanguageClient"
-else
-  let g:custom_lsp_plugin = "vim-lsp"
-endif
 
 " Plugin settings
 source ~/.vim/plugins.vim
@@ -22,16 +17,21 @@ source ~/.vim/plugins.vim
 "use vim, not vi"
 set nocompatible
 
+"natural splits
+set splitbelow
+set splitright
+
 "history size 1000"
 set history=1000
 
+" Use filetype detection and file-based automatic indenting.
+filetype plugin indent on
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-    " Use filetype detection and file-based automatic indenting.
-    filetype plugin indent on
 
-    " Use actual tab chars in Makefiles.
-    autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+  " Use actual tab chars in Makefiles.
+  autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 endif
 
 "tab management
@@ -41,16 +41,6 @@ set shiftwidth=2 "> key will move 2 spaces
 
 "reload file if it is opened by an external program while editing"
 set autoread
-
-"enables mouse"
-"set mouse=a
-
-"enables keys to pass through tmux"
-if has('nvim')
-  "todo
-else
-  set term=xterm-256color
-endif
 
 "enables wild mode (https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu)"
 set wildmenu
@@ -107,15 +97,13 @@ endif
 " Theming "
 " ------- "
 
-" airline {
+" airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='murmur'
-" }
 
-" vim-colorschemes {
+" vim-colorschemes
 :source ~/.vim/setcolors.vim
 colorscheme ag1
-" }
 
 " ---------------------- "
 " Plugins & Key Bindings "
@@ -125,14 +113,11 @@ colorscheme ag1
 :let mapleader = ","
 
 " F2: Toggle search hightlight
-nnoremap <F2> :set hlsearch!<CR>
+" nnoremap <F2> :set hlsearch!<CR>
 
 " strings to use in 'list' mode
-if ('nvim')
-  set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,space:␣
-else
-  set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,nbsp:␣
-endif
+set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,space:␣
+
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
 
@@ -178,23 +163,21 @@ nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 0
 nmap <silent> <C-_> <Plug>NERDCommenterToggle
-vmap <silent> <C-_> <Plug>NERDCommenterToggle
-inoremap <C-_> <plug>NERDCommenterInsert
+vma <silent> <C-_> <Plug>NERDCommenterToggle
+
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 
 " calls Ag.vim with the word under cursor
 nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
 
 " FZF
-noremap <C-p> :FZF<CR>
+noremap <C-p> :GFiles -co --exclude-standard<CR>
 nnoremap <leader>c :Commits<CR>
 nnoremap <leader>h :History<CR>
 
 " GitGutter {
-  nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
-  " nnoremap <silent> <leader>gh :GitGutterLineHighlightsToggle<CR>
-  " nnoremap <silent> <leader>ga :GitGutterToggle<CR>
-" }
-
+nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
 
 " Copy to X CLIPBOARD
 map <leader>cc :w !xclip -selection c<CR>
@@ -238,7 +221,7 @@ let g:ale_sign_warning = '⚠'
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-"let g:ale_open_list = 1
+let g:ale_open_list = 1
 
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
@@ -247,114 +230,50 @@ let g:ale_linters = {
       \   'cpp': [],
       \   'c': ['clangtidy'],
       \   'go': ['golangci-lint'],
+      \   'typescript': ['tslint'],
       \}
 let g:ale_fixers = {
       \   'go': ['gofmt', 'goimports'],
+      \   'typescript': ['tslint', 'prettier'],
+      \   'html': ['prettier'],
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
-if g:custom_lsp_plugin == "vim-lsp"
-  let g:lsp_signs_enabled = 1 "enable signs
-  let g:lsp_diagnostics_echo_cursor = 1 "enable echo under cursor when in normal mode
+" Deoplete settings
+let g:deoplete#enable_at_startup = 0
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+call deoplete#custom#source('LanguageClient',
+      \ 'min_pattern_length',
+      \ 2)
 
-  let g:lsp_signs_error = {'text': '⤫'}
-  let g:lsp_signs_warning = {'text': '⚠'}
-  let g:lsp_signs_hint = {'text': 'ℹ'}
+set hidden
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+      \ 'rust':       ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
+      \ 'c':          ['clangd'],
+      \ 'cpp':        ['clangd'],
+      \ 'python':     ['pyls', '--log-file', g:custom_pyls_log_path],
+      \ 'sh':         ['bash-language-server', 'start'],
+      \ 'lua':        ['lua-lsp'],
+      \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path],
+      \ 'typescript': ['typescript-language-server', '--stdio', '--tsserver-log-file', g:custom_typescript_server_log_path],
+      \ }
 
-  let g:lsp_log_verbose = 0
-  let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
-  let g:asyncomplete_log_file = expand('~/.lsp/asyncomplete.log')
+let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings
+let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
-  if executable('clangd')
-     au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd', '--log-file', g:custom_cquery_log_path]},
-        \ 'root_uri': {server_info->lsp#utils#path_to_uri(
-                \ lsp#utils#find_nearest_parent_file_directory(
-                \ lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-        \ 'initialization_options': { 'cacheDirectory': g:custom_cquery_cache_path },
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-        \ })
-  endif
-
-  if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls', '--log-file', g:custom_pyls_log_path]},
-        \ 'whitelist': ['python'],
-        \ })
-  endif
-
-  if executable('rustup')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-  endif
-
-  if executable('javascript-typescript-stdio')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'javascript-typescript-stdio',
-        \ 'cmd': {server_info->['javascript-typescript-stdio', '--logfile', g:custom_javascriptserver_log_path, '-j']},
-        \ 'whitelist': ['javascript'],
-        \ })
-  endif
-
-  let g:autofmt_autosave = 1
-  let g:lsp_signs_enabled = 1         " enable signs
-  let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-
-  nnoremap <F5> :LspCodeAction<CR>
-  nnoremap <Leader>rd :LspDefinition<CR>
-  nnoremap <Leader>ri :LspImplementation<CR>
-  nnoremap <Leader>rf :LspReferences<CR>
-  nnoremap <Leader>rh :LspHover<CR>
-  nnoremap <Leader>rr :LspRename<CR>
-  nnoremap <Leader>rs :LspDocumentSymbol<CR>
-  nnoremap <Leader>ff :LspDocumentFormat<CR>
-
-elseif g:custom_lsp_plugin == "LanguageClient" " LanguageClient_neovim
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-  let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-  call deoplete#custom#source('LanguageClient',
-        \ 'min_pattern_length',
-        \ 2)
-  " call deoplete#custom#option('sources', {
-  "       \ '_': ['ale', 'LanguageClient'],
-  "       \})
-
-  set hidden
-  let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_serverCommands = {
-    \ 'rust':       ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-    \ 'c':          ['clangd'],
-    \ 'cpp':        ['clangd'],
-    \ 'javascript': ['javascript-typescript-stdio', '--logfile', g:custom_javascriptserver_log_path],
-    \ 'python':     ['pyls', '--log-file', g:custom_pyls_log_path],
-    \ 'sh':         ['bash-language-server', 'start'],
-    \ 'lua':        ['lua-lsp'],
-    \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path],
-  \ }
-
-  let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings
-  let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-  set completefunc=LanguageClient#complete
-  set formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  nnoremap <Leader>rd :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
-  nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
-  nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
-  nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
-
-" Auto format on save
-"  autocmd BufWritePre *.py :call LanguageClient#textDocument_formatting_sync()
-endif
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <Leader>rd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
+nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
+nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
+nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
+nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
+nnoremap <Leader>. :call LanguageClient_textDocument_codeAction()<CR>
 
 " vim-clang-format configs {
   " map to <Leader>cf in C++ code
