@@ -34,10 +34,18 @@ if has("autocmd")
   autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 endif
 
-"tab management
+" Spaces management
 set expandtab
 set softtabstop=2
 set shiftwidth=2 "> key will move 2 spaces
+
+" Tab navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-Left> <Esc>:tabprevious<CR>i
+inoremap <C-Right>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 "reload file if it is opened by an external program while editing"
 set autoread
