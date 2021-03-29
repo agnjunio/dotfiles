@@ -1,0 +1,48 @@
+[1]
+Description=No border
+clientmachine=localhost
+clientmachinematch=0
+noborder=true
+noborderrule=4
+title=New Tab - Google Chrome
+titlematch=0
+types=1
+windowrole=browser
+windowrolematch=0
+wmclass=google-chrome
+wmclasscomplete=false
+wmclassmatch=0
+
+[2]
+Description=[Motorola] Google Crome
+activity=ccab87f8-5f4f-4349-8428-63bfbe46cf87
+activityrule=2
+wmclass=google-chrome
+wmclasscomplete=false
+wmclassmatch=1
+
+[3]
+Description=[Personal] Firefox
+activity=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
+activityrule=2
+wmclass=Firefox
+wmclasscomplete=false
+wmclassmatch=1
+
+[4]
+Description=[Personal] Discord
+activity=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
+activityrule=2
+wmclass=discord
+wmclasscomplete=false
+wmclassmatch=1
+
+[General]
+XftAntialias[$d]
+XftHintStyle[$d]
+XftSubPixel[$d]
+count=4
+
+[KDE]
+LookAndFeelPackage[$d]
+SingleClick[$d]
