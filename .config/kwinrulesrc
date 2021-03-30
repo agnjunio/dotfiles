@@ -14,6 +14,14 @@ wmclasscomplete=false
 wmclassmatch=0
 
 [2]
+Description=[Motorola] Microsoft Teams
+activity=ccab87f8-5f4f-4349-8428-63bfbe46cf87
+activityrule=2
+wmclass=microsoft teams - preview
+wmclasscomplete=false
+wmclassmatch=1
+
+[3]
 Description=[Motorola] Google Crome
 activity=ccab87f8-5f4f-4349-8428-63bfbe46cf87
 activityrule=2
@@ -21,15 +29,15 @@ wmclass=google-chrome
 wmclasscomplete=false
 wmclassmatch=1
 
-[3]
+[4]
 Description=[Personal] Firefox
 activity=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
 activityrule=2
-wmclass=Firefox
+wmclass=firefox
 wmclasscomplete=false
 wmclassmatch=1
 
-[4]
+[5]
 Description=[Personal] Discord
 activity=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
 activityrule=2
@@ -41,7 +49,7 @@ wmclassmatch=1
 XftAntialias[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
-count=4
+count=5
 
 [KDE]
 LookAndFeelPackage[$d]
