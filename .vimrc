@@ -266,6 +266,7 @@ let g:LanguageClient_serverCommands = {
       \ 'lua':        ['lua-lsp'],
       \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path],
       \ 'typescript': ['typescript-language-server', '--stdio', '--tsserver-log-file', g:custom_typescript_server_log_path],
+      \ 'vue':        ['vls'],
       \ }
 
 let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings

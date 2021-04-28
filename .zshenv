@@ -29,4 +29,7 @@ if [[ ! -o norcs ]]; then
   export GTK_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
   export QT_IM_MODULE=ibus
+
+  export COREID=agnaldoj
+  emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
 fi
