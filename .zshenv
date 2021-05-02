@@ -18,7 +18,7 @@ if [[ ! -o norcs ]]; then
   }
 
   export JAVA_HOME=/usr/lib/jvm/default
-  export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+  #export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
   export ANDROID_SDK_ROOT=~/Android/Sdk
   export ANDROID_HOME=~/Android/Sdk
@@ -29,7 +29,4 @@ if [[ ! -o norcs ]]; then
   export GTK_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
   export QT_IM_MODULE=ibus
-
-  export COREID=agnaldoj
-  emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
 fi

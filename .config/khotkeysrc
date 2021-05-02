@@ -887,8 +887,8 @@ Type=GESTURE
 
 [Data_4]
 Comment=https://forum.kde.org/viewtopic.php?t=137658\n\nSince shortcut is not working, use this workaround.
-Enabled=true
-Name=Switch to Motorola Activity
+Enabled=false
+Name=Switch to Default Activity
 Type=SIMPLE_ACTION_DATA
 
 [Data_4Actions]
@@ -916,7 +916,7 @@ Uuid={74ee859c-af39-40cb-a434-fdbe1c53a0c0}
 
 [Data_5]
 Comment=https://forum.kde.org/viewtopic.php?t=137658\n\nSince shortcut is not working, use this workaround.
-Enabled=true
+Enabled=false
 Name=Switch to Personal Activity
 Type=SIMPLE_ACTION_DATA
 

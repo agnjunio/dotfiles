@@ -1,5 +1,5 @@
 [ActionPlugins][0]
-MidButton;NoModifier=org.kde.paste
+MiddleButton;NoModifier=org.kde.paste
 RightButton;NoModifier=org.kde.contextmenu
 wheel:Vertical;NoModifier=org.kde.switchdesktop
 
@@ -8,29 +8,6 @@ RightButton;NoModifier=org.kde.contextmenu
 
 [AppletGlobals][org.kde.plasma.comic]
 lastUpdate=2021,3,30,16,28,27
-
-[Containments][2]
-ItemGeometriesHorizontal=
-activityId=ccab87f8-5f4f-4349-8428-63bfbe46cf87
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.potd
-
-[Containments][2][ConfigDialog]
-DialogHeight=1015
-DialogWidth=1920
-
-[Containments][2][Configuration]
-PreloadWeight=10
-
-[Containments][2][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/DarkestHour/contents/images/2560x1600.jpg
-
-[Containments][2][Wallpaper][org.kde.potd][General]
-FillMode=2
 
 [Containments][3]
 activityId=
@@ -46,7 +23,7 @@ immutability=1
 plugin=org.kde.plasma.minimizeall
 
 [Containments][3][Applets][10][Configuration]
-PreloadWeight=45
+PreloadWeight=95
 
 [Containments][3][Applets][10][Configuration][ConfigDialog]
 DialogHeight=540
@@ -133,66 +110,7 @@ DialogWidth=1920
 PreloadWeight=10
 
 [Containments][3][General]
-AppletOrder=38;92;76;90;80;79;74;10
-
-[Containments][36]
-ItemGeometriesHorizontal=Applet-28:1456,624,336,176,0;Applet-44:1488,352,288,272,0;
-activityId=ccab87f8-5f4f-4349-8428-63bfbe46cf87
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.desktopcontainment
-wallpaperplugin=org.kde.potd
-
-[Containments][36][Applets][28]
-immutability=1
-plugin=org.kde.plasma.digitalclock
-
-[Containments][36][Applets][28][Configuration]
-PreloadWeight=48
-
-[Containments][36][Applets][44]
-immutability=1
-plugin=org.kde.plasma.weather
-
-[Containments][36][Applets][44][Configuration]
-PreloadWeight=10
-UserBackgroundHints=ShadowBackground
-source=wettercom|weather|Manaus, Estado do Amazonas, BR|BRXY00004;Manaus
-updateInterval=30
-weatherServiceProviders=bbcukmet,wettercom,noaa
-
-[Containments][36][Applets][44][Configuration][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][36][Applets][95][Configuration]
-PreloadWeight=47
-
-[Containments][36][ConfigDialog]
-DialogHeight=997
-DialogWidth=1920
-
-[Containments][36][Configuration]
-PreloadWeight=10
-
-[Containments][36][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=739
-ToolBoxButtonY=27
-
-[Containments][36][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
-
-[Containments][36][Wallpaper][org.kde.potd][General]
-FillMode=2
-Provider=bing
-
-[Containments][36][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/ajunior/Pictures/Wallpappers/jason-ortego-TznjqhCHR9g-unsplash.jpg
-SlidePaths=/home/ajunior/Pictures/Wallpappers
-UncheckedSlides=file:///usr/share/wallpapers/FlyingKonqui/contents/images/1920x1080.png
+AppletOrder=38;92;76;90;74;10;80
 
 [Containments][47]
 activityId=
@@ -208,7 +126,7 @@ immutability=1
 plugin=org.kde.plasma.kickoff
 
 [Containments][47][Applets][4][Configuration]
-PreloadWeight=78
+PreloadWeight=88
 
 [Containments][47][Applets][4][Configuration][Configuration/General]
 showAppsByName=true
@@ -227,16 +145,6 @@ plugin=org.kde.plasma.appmenu
 [Containments][47][Applets][48][Configuration]
 PreloadWeight=10
 
-[Containments][47][Applets][49]
-immutability=1
-plugin=org.kde.plasma.panelspacer
-
-[Containments][47][Applets][49][Configuration]
-PreloadWeight=10
-
-[Containments][47][Applets][49][Configuration][General]
-length=1554
-
 [Containments][47][Applets][69]
 immutability=1
 plugin=org.kde.plasma.panelspacer
@@ -245,7 +153,7 @@ plugin=org.kde.plasma.panelspacer
 PreloadWeight=18
 
 [Containments][47][Applets][69][Configuration][General]
-length=12
+length=859
 
 [Containments][47][Applets][7]
 immutability=1
@@ -277,45 +185,7 @@ DialogWidth=1920
 PreloadWeight=10
 
 [Containments][47][General]
-AppletOrder=4;69;48;49;78;70;7
-
-[Containments][54]
-activityId=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.desktopcontainment
-wallpaperplugin=org.kde.slideshow
-
-[Containments][54][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][54][Configuration]
-PreloadWeight=10
-
-[Containments][54][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
-
-[Containments][54][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/ajunior/Pictures/Wallpappers/daniel-zacatenco-6rv0t2VjQR4-unsplash.jpg
-SlidePaths=/home/ajunior/Pictures/Wallpappers
-
-[Containments][55]
-activityId=8a92f9ce-325b-4d35-96e6-0650f9be7a7e
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][55][Configuration]
-PreloadWeight=18
-
-[Containments][55][Wallpaper][org.kde.image][General]
-Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
+AppletOrder=4;48;69;70;7;78
 
 [Containments][8]
 PreloadWeight=10
@@ -360,7 +230,7 @@ immutability=1
 plugin=org.kde.plasma.keyboardindicator
 
 [Containments][8][Applets][15][Configuration]
-PreloadWeight=15
+PreloadWeight=25
 
 [Containments][8][Applets][16]
 immutability=1
@@ -431,15 +301,86 @@ plugin=org.kde.kscreen
 [Containments][8][Applets][93][Configuration]
 PreloadWeight=55
 
+[Containments][8][Applets][94]
+immutability=1
+plugin=org.kde.kdeconnect
+
+[Containments][8][Applets][99][Configuration]
+PreloadWeight=42
+
 [Containments][8][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
 
 [Containments][8][General]
-extraItems=org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement,org.kde.plasma.bluetooth,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.devicenotifier,discord1,Microsoft Teams - Preview1,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.kscreen
-hiddenItems=org.kde.plasma.clipboard,org.kde.plasma.nightcolorcontrol,org.kde.kscreen
-knownItems=org.kde.plasma.nightcolorcontrol,org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.kdeconnect,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.plasma.printmanager,org.kde.plasma.devicenotifier
+extraItems=org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement,org.kde.plasma.bluetooth,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.kscreen,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.kdeconnect,KMix
+hiddenItems=org.kde.plasma.clipboard,org.kde.plasma.nightcolorcontrol,org.kde.kscreen,KMix
+knownItems=org.kde.plasma.nightcolorcontrol,org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.ktp-contactlist,org.kde.kdeconnect
 shownItems=discord1,Microsoft Teams - Preview1,org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.plasma.battery
+
+[Containments][94]
+ItemGeometriesHorizontal=Applet-98:1424,672,400,224,0;
+activityId=c01b3b70-b691-405c-a767-1fcd5b04c99b
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.potd
+
+[Containments][94][Applets][98]
+immutability=1
+plugin=org.kde.plasma.digitalclock
+
+[Containments][94][ConfigDialog]
+DialogHeight=977
+DialogWidth=1231
+
+[Containments][94][General]
+ToolBoxButtonState=topcenter
+ToolBoxButtonX=577
+ToolBoxButtonY=30
+
+[Containments][94][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.png
+
+[Containments][94][Wallpaper][org.kde.potd][General]
+FillMode=2
+Provider=bing
+
+[Containments][95]
+ItemGeometriesHorizontal=
+activityId=c01b3b70-b691-405c-a767-1fcd5b04c99b
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][95][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.png
+
+[Containments][96]
+activityId=e5084105-74f8-40a3-ab00-4e437d19b218
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.slideshow
+
+[Containments][96][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][96][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.png
+SlidePaths=/usr/share/wallpapers
+
+[Containments][96][Wallpaper][org.kde.slideshow][General]
+Image=file:///usr/share/wallpapers/summer_1am/contents/images/1920x1080.jpg
+SlidePaths=/usr/share/wallpapers,/home/agnjunio/Pictures/Wallpappers
 
 [Containments3Appletsts][38][Configuration][General]
 currentDesktopSelected=ShowDesktop

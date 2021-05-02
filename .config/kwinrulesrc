@@ -1,3 +1,6 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum
+
 [1]
 Description=No border
 clientmachine=localhost
