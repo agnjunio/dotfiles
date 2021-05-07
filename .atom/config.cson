@@ -1,0 +1,8 @@
+"*":
+  core:
+    projectHome: "/Users/agoliveira/projects"
+    telemetryConsent: "no"
+  "exception-reporting":
+    userId: "54ed3ebd-847a-404b-a7f6-33befbe2dcb4"
+  welcome:
+    showOnStartup: false

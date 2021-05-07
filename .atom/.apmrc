@@ -1,0 +1,4 @@
+strict-ssl=false
+scope=@paypalcorp
+metrics-registry=https://npm.paypal.com/
+registry=https://npm.paypal.com/

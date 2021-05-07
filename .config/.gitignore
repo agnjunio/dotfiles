@@ -1,9 +1,1 @@
-/*
-!.gitignore
-!/awesome-copycats/
-!/nvim/
-!/termite/
-!/oh-my-zsh/
-!/nvim
-!/i3
-!/i3blocks
+configstore/

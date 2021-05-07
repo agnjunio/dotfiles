@@ -80,4 +80,9 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^H' insert-last-command-output
 
-source_if_exists /usr/share/nvm/init-nvm.sh
+# Configuration for node to trust the PayPal Proxy Certificates
+export NODE_EXTRA_CA_CERTS='/usr/local/etc/openssl/certs/paypal_proxy_cacerts.pem'
+
+# Configuration to load nvm - node version manager
+export NVM_DIR="$HOME/.nvm"
+source_if_exists "$NVM_DIR/nvm.sh"

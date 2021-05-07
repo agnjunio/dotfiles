@@ -1,8 +1,8 @@
 [user]
 	name = Agnaldo Junior
-	email = agnaldo.junior01@gmail.com
+	email = agoliveira@paypal.com
 [core]
-	editor = vim
+	editor = nvim
 [color]
 	ui = auto
 [alias]
