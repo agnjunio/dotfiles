@@ -233,17 +233,18 @@ let g:ale_open_list = 1
 
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
-      \   'gitcommit': ['gitlint'],
-      \   'python': ['pycodestyle'],
-      \   'cpp': [],
       \   'c': ['clangtidy'],
+      \   'cpp': [],
+      \   'gitcommit': ['gitlint'],
       \   'go': ['golangci-lint'],
+      \   'python': ['pycodestyle'],
       \   'typescript': ['tslint'],
       \}
 let g:ale_fixers = {
+      \   'elixir': ['mix_format'],
       \   'go': ['gofmt', 'goimports'],
-      \   'typescript': ['tslint', 'prettier'],
       \   'html': ['prettier'],
+      \   'typescript': ['tslint', 'prettier'],
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 

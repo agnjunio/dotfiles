@@ -1,22 +1,23 @@
 call plug#begin('~/.vim/plug')
 
-Plug 'airblade/vim-gitgutter'
-Plug 'arakashic/chromatica.nvim'
+" Theme stuff
 Plug 'bling/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'preservim/nerdcommenter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'rking/ag.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
-Plug 'ervandew/supertab'
+
+" IDE Stuff
+Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
-Plug 'rhysd/vim-clang-format'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ervandew/supertab'
+Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'rking/ag.vim'
 
+" Language-Agnostic Plugins
+Plug 'w0rp/ale'
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': '/bin/bash install.sh'
@@ -24,5 +25,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+
+" Elixir
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
