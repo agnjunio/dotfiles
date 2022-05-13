@@ -4,6 +4,10 @@ function source_if_exists() {
   fi
 }
 
+function cmd_exists() {
+  command -v $1 >/dev/null 2>&1
+}
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -64,11 +68,11 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.aliases
 
 # Disable terminal key catching
 stty -ixon
 
+# Key-bindings
 # Alt-Enter = prepends 'sudo ' to the command
 bindkey -s "^[^m" '^asudo ^e'
 
@@ -80,4 +84,8 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^H' insert-last-command-output
 
-source_if_exists /usr/share/nvm/init-nvm.sh
+# Extensions
+for e in ~/.zsh.d/*.zsh; do source $e; done
+
+# Completions
+for c in ~/.zsh.d/completions/_*; do source $c; done
