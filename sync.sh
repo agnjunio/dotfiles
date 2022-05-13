@@ -1,4 +1,16 @@
-#!/bin/bash
+#!/bin/env sh
+
+if [ "$(uname)" == "Darwin" ]; then
+  os="osx"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  os="linux"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+  os="win32"
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  os="win64"
+fi
+
+echo "Syncing dotfiles on ${os}..."
 
 backup_dot_file() {
   local f=$1
@@ -15,7 +27,7 @@ sync_dot_file() {
   local tgt=$HOME/$link
 
   echo -n "Installing ${src}: "
-  if [[ -L $tgt && `readlink -f $tgt` = $src ]]; then
+  if [[ -L $tgt && `readlink $tgt` = $src ]]; then
     echo "skipping..."
     return 0
   fi
@@ -30,8 +42,20 @@ sync_dot_file() {
 }
 
 sync_dot_files() {
-  local ignoredirs='-I ".*~" -I ".*swp" -I .git -I .gitmodules -I sync.sh -I .kde -I .xdg-config -I .local-config -I .gitignore -I .powerline -I ycm_compile.log -I scripts -I pacman-hooks -I .editorconfig'
-  local files_to_install=`eval "ls --color=never -A $ignoredirs"`
+  case ${os} in
+    linux*)
+      local ignoredirs='-I ".*~" -I ".*swp" -I .git -I .gitmodules -I sync.sh -I .kde -I .xdg-config -I .local-config -I .gitignore -I .powerline -I ycm_compile.log -I scripts -I pacman-hooks -I .editorconfig'
+      local files_to_install=`eval "ls --color=never -A $ignoredirs"`
+      ;;
+    osx*)
+      local ignoredirs=". .. '.*~' '.*swp' .git .gitmodules sync.sh .kde .xdg-config .local-config .gitignore .powerline ycm_compile.log scripts pacman-hooks .editorconfig"
+      local files_to_install=$(find .* -depth 0 $(echo $ignoredirs | xargs -n1 -I % echo -n '-not -name % ') | xargs echo)
+      ;;
+    *)
+      local ignoredirs=""
+      local files_to_install=""
+      ;;
+  esac
 
   for file in $files_to_install; do
     sync_dot_file $file || return 1
