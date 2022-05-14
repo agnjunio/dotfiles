@@ -1,139 +1,70 @@
-" High-level Settings
-let g:custom_cquery_cache_path = expand('~/.lsp/clangd-cache')
-let g:custom_cquery_log_path = expand('~/.lsp/clangd.log')
-let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
-let g:custom_golangserver_log_path = expand('~/.lsp/go-langserver.log')
-let g:custom_javascript_server_log_path = expand('~/.lsp/javascript-server.log')
-let g:custom_typescript_server_log_path = expand('~/.lsp/typescript-server.log')
-let g:custom_vls_log_path = expand('~/.lsp/vls.log')
-
-" Plugin settings
 source ~/.vim/plugins.vim
 
 "--------------- "
 " General Config "
 " -------------- "
 
-"use vim, not vi"
 set nocompatible
-
 "natural splits
 set splitbelow
 set splitright
-
-"history size 1000"
 set history=1000
-
-" Use filetype detection and file-based automatic indenting.
-filetype plugin indent on
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Use actual tab chars in Makefiles.
-  autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
-endif
-
 " Spaces management
 set expandtab
 set softtabstop=2
 set shiftwidth=2 "> key will move 2 spaces
-
-" Tab navigation
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-Left> <Esc>:tabprevious<CR>i
-inoremap <C-Right>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
-
 "reload file if it is opened by an external program while editing"
 set autoread
-
 "enables wild mode (https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu)"
 set wildmenu
-
 "search
 set hlsearch "highlight search results"
 set incsearch "incremental search (search as you press keys)"
 set ignorecase "case insensitive search"
 set smartcase
-
 set ruler "always show cursor's current position"
-
 "command bar height"
 set cmdheight=2
-
 "backspace in normal mode"
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
 set magic " Set magic on, for regular expressions
 set showmatch " Show matching bracets when text indicator is over them
 set mat=10 " How many tenths of second to blink
-
 "line number"
 set number
-
 "no text wrapping"
 set nolinebreak
 set wrap
-
-" ----------- "
-" Status Line "
-" ----------- "
-
 "always show status line"
 set laststatus=2
-
-"status line message"
-if has('statusline')
-  " Broken down into easily includeable segments "
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-
-  set statusline=%<%f\ " Filename"
-  set statusline+=%w%h%m%r " Options"
-  set statusline+=\[%{&ff}/%Y] " filetype"
-  "set statusline+=\[%{getcwd()}] "" currentdir"
-  set statusline+=%{fugitive#statusline()} " Git Hotness"
-  set statusline+=%=%-14.(%l,%c%V%)\%p%% " Right aligned file nav info"
-endif
 
 " ------- "
 " Theming "
 " ------- "
 
-" airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme='murmur'
-
-" vim-colorschemes
-:source ~/.vim/setcolors.vim
+" This theme is dervated from vim-colorschemes
 colorscheme ag1
+" ExtraWhitespace colors
+highlight ExtraWhitespace ctermbg=darkgrey guibg=darkgrey
+" Show trailing whitespace and spaces before a tab:
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " ---------------------- "
 " Plugins & Key Bindings "
 " ---------------------- "
 
-"leader key"
-:let mapleader = ","
-
+":let mapleader = ","
 " F2: Toggle search hightlight
-" nnoremap <F2> :set hlsearch!<CR>
-
+nnoremap <F2> :set hlsearch!<CR>
 " strings to use in 'list' mode
 set listchars=eol:↲,tab:→\ ,trail:·,extends:⟩,precedes:⟨,space:␣
-
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
-
 " F4: Toggle line numbers
 nnoremap <F4> :set invnumber<CR>
 vnoremap <F4> :set invnumber<CR>
 inoremap <F4> :set invnumber<CR>
-
 " move lines easily
 nnoremap <S-Down> :m .+1<CR>==
 nnoremap <S-Up> :m .-2<CR>==
@@ -141,7 +72,6 @@ inoremap <S-Down> <Esc>:m .+1<CR>==gi
 inoremap <S-Up> <Esc>:m .-2<CR>==gi
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 vnoremap <S-Up> :m '<-2<CR>gv=gv
-
 " navigate between multiple open files
 nnoremap <leader><Right> :tabnext<CR>
 nnoremap <leader><Left> :tabprevious<CR>
@@ -149,7 +79,6 @@ nnoremap <leader><Up> :tabmove +1<CR>
 nnoremap <leader><Down> :tabmove -1<CR>
 nnoremap <leader>q :tabclose<CR>
 nnoremap <leader>t :tabnew<CR>
-
 " Ctrl-S to save file (assuming terminal doesn't catch the keys)
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
@@ -161,18 +90,15 @@ command -nargs=0 -bar Update if &modified
 \|    endif
 \|endif
 nnoremap <silent> <C-S> :<C-u>Update<CR>
-
 " Leader-S to save as root (sudo tee trick)
 nnoremap <leader>w :w !sudo tee %<CR>
-
 " Fast replace command
 nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
 
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 0
-nmap <silent> <C-_> <Plug>NERDCommenterToggle
-vma <silent> <C-_> <Plug>NERDCommenterToggle
-
+nnoremap <silent> <leader>/ <Plug>NERDCommenterToggle
+vnoremap <silent> <leader>/ <Plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 
@@ -180,54 +106,114 @@ let g:NERDDefaultAlign = 'left'
 nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
 
 " FZF
-noremap <C-p> :GFiles -co --exclude-standard<CR>
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>h :History<CR>
+noremap <silent> <C-p> :GFiles -co --exclude-standard<CR>
+noremap <silent> <leader>h :History<CR>
+" nnoremap <leader>c :Commits<CR>
 
-" GitGutter {
+" GitGutter
 nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
 
-" Copy to X CLIPBOARD
-map <leader>cc :w !xclip -selection c<CR>
-map <leader>cp :w !xclip -selection p<CR>
-map <leader>cs :w !xclip -selection s<CR>
-" Paste from X CLIPBOARD
-map <leader>pc :r!xclip -o -selection c<CR>
-map <leader>pp :r!xclip -o -selection p<CR>
-map <leader>ps :r!xclip -o -selection s<CR>
+" Copy to system clipboard (with meta-C support)
+vnoremap <leader>y "+y<CR>
+vnoremap <M-c> "+y<CR>
 
 " Set netrw cache
 let g:netrw_home=expand('~/.cache/vim')
 
-" ----------- "
-" Code syntax "
-" ----------- "
+" COC
 
-" Python
-:let python_highlight_all = 1
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-"syntax enable"
-syn on
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" ExtraWhitespace colors
-highlight ExtraWhitespace ctermbg=darkgrey guibg=darkgrey
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Show trailing whitespace and spaces before a tab:
-match ExtraWhitespace /\s\+$\| \+\ze\t/
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rr <Plug>(coc-rename)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')a
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " ------------------------ "
 " Language Client Settings "
 " ------------------------ "
 
+filetype plugin on
+filetype plugin indent on
+" set omnifunc=syntaxcomplete#Complete
+set omnifunc=ale#completion#OmniFunc
+
 " ALE - Asynchronous Lint Engine
 let g:ale_enabled = 1
+let g:ale_disable_lsp = 1
+" This is done by COC
 let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 
-let g:ale_set_loclist = 0
+let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
@@ -238,65 +224,26 @@ let g:ale_linters = {
       \   'gitcommit': ['gitlint'],
       \   'go': ['golangci-lint'],
       \   'python': ['pycodestyle'],
+      \   'javascript': ['eslint'],
       \   'typescript': ['tslint'],
       \}
 let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'elixir': ['mix_format'],
       \   'go': ['gofmt', 'goimports'],
       \   'html': ['prettier'],
+      \   'javascript': ['eslint', 'prettier'],
       \   'typescript': ['tslint', 'prettier'],
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
-" Deoplete settings
-let g:deoplete#enable_at_startup = 0
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-call deoplete#custom#source('LanguageClient',
-      \ 'min_pattern_length',
-      \ 2)
-
-set hidden
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-      \ 'rust':       ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-      \ 'c':          ['clangd'],
-      \ 'cpp':        ['clangd'],
-      \ 'python':     ['pyls', '--log-file', g:custom_pyls_log_path],
-      \ 'sh':         ['bash-language-server', 'start'],
-      \ 'lua':        ['lua-lsp'],
-      \ 'go':         ['go-langserver', '-logfile', g:custom_golangserver_log_path],
-      \ 'typescript': ['typescript-language-server', '--stdio', '--tsserver-log-file', g:custom_typescript_server_log_path],
-      \ 'vue':        ['vls'],
-      \ }
-
-let g:LanguageClient_loadSettings = 0 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <Leader>rd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <Leader>ri :call LanguageClient_textDocument_implementation()<CR>
-nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
-nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
-nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
-nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
-nnoremap <Leader>. :call LanguageClient_textDocument_codeAction()<CR>
-
-" vim-clang-format configs {
-  " map to <Leader>cf in C++ code
-  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-  nmap <Leader>C :ClangFormatAutoToggle<CR>
-
-  autocmd FileType c ClangFormatAutoEnable
-  autocmd BufWritePre *.cpp,*.hpp ClangFormat
-" }
-
-" Golang configs
+" Golang
 au FileType go set noexpandtab
 au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
+
+" Makefile
+if has("autocmd")
+  autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+endif
