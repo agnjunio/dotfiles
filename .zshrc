@@ -57,12 +57,7 @@ ZSH_CUSTOM=$HOME/.config/oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  adb
-  archlinux
   colored-man-pages
-  colorize
-  command-not-found
-  git
   themes
   z
 )
