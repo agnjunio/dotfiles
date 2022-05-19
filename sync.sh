@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/usr/bin/env sh
 
 if [ "$(uname)" == "Darwin" ]; then
   os="osx"
@@ -42,22 +42,32 @@ sync_dot_file() {
 }
 
 sync_dot_files() {
+  local ignores=(
+    .
+    ..
+    .*~
+    .*swp
+    .git
+    .gitmodules
+    sync.sh
+    .gitignore
+    scripts
+  )
+
   case ${os} in
     linux*)
-      local ignoredirs='-I ".*~" -I ".*swp" -I .git -I .gitmodules -I sync.sh -I .kde -I .xdg-config -I .local-config -I .gitignore -I .powerline -I ycm_compile.log -I scripts -I pacman-hooks -I .editorconfig'
-      local files_to_install=`eval "ls --color=never -A $ignoredirs"`
+      local files=$(ls --color=never -A $(for ignore in ${ignores[@]}; do echo -n '-I $ignore '; done))
       ;;
     osx*)
       local ignoredirs=". .. '.*~' '.*swp' .git .gitmodules sync.sh .kde .xdg-config .local-config .gitignore .powerline ycm_compile.log scripts pacman-hooks .editorconfig"
       local files_to_install=$(find .* -depth 0 $(echo $ignoredirs | xargs -n1 -I % echo -n '-not -name % ') | xargs echo)
       ;;
     *)
-      local ignoredirs=""
-      local files_to_install=""
+      local files=""
       ;;
   esac
 
-  for file in $files_to_install; do
+  for file in $files; do
     sync_dot_file $file || return 1
   done
   return 0
