@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -46,4 +46,3 @@ fi
 
 echo "## Installing AUR packages..."
 yay -S ${packages_aur[@]}
-
