@@ -5,5 +5,4 @@ if [[ ! -o norcs ]]; then
   export SSH_KEY_PATH="~/.ssh/rsa_id"
 
   typeset -U path
-  path=($path $HOME/.bin $HOME/.local/bin)
 fi
