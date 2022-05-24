@@ -1,5 +1,10 @@
+# Ignore everything
 *
+# But allow some subdirectories
+!*/
 !.gitignore
-!alacritty/
-!nvim/
-!oh-my-zsh/
+
+# Allow
+!alacritty/**
+!nvim/**
+!oh-my-zsh/**
