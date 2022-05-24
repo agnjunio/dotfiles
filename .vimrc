@@ -4,6 +4,7 @@ source ~/.vim/plugins.vim
 " General Config "
 " -------------- "
 
+set background="dark"
 set nocompatible
 "natural splits
 set splitbelow
@@ -55,7 +56,7 @@ endif
 " ------- "
 
 " This theme is dervated from vim-colorschemes
-colorscheme peachpuff
+colorscheme ag1
 " ExtraWhitespace colors
 highlight ExtraWhitespace ctermbg=darkgrey guibg=darkgrey
 " Show trailing whitespace and spaces before a tab:
