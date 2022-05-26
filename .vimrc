@@ -251,6 +251,7 @@ if PlugLoaded("ale")
         \   'python': ['pycodestyle'],
         \   'javascript': ['eslint'],
         \   'typescript': ['tslint'],
+        \   'typescriptreact': ['eslint'],
         \}
   let g:ale_fixers = {
         \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -259,6 +260,7 @@ if PlugLoaded("ale")
         \   'html': ['prettier'],
         \   'javascript': ['eslint', 'prettier'],
         \   'typescript': ['tslint', 'prettier'],
+        \   'typescriptreact': ['tslint', 'prettier'],
         \}
   autocmd FileType gitcommit let g:ale_sign_column_always = 1
 endif
