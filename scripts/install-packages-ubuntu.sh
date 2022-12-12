@@ -6,6 +6,7 @@ packages=(
     curl
     fonts-powerline
     git
+    neovim
     tig
     tmux
     zsh
