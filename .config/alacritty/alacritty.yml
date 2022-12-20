@@ -20,7 +20,7 @@ cursor:
     shape: Beam
 live_config_reload: true
 mouse:
-  hide_when_typing: true
+  hide_when_typing: false
 key_bindings:
   # (Windows, Linux, and BSD only)
   - { key: Insert,         mods: Shift,                         action: PasteSelection   }
