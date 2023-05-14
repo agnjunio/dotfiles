@@ -77,13 +77,6 @@ nnoremap <F3> :set list!<CR>
 nnoremap <F4> :set invnumber<CR>
 vnoremap <F4> :set invnumber<CR>
 inoremap <F4> :set invnumber<CR>
-" move lines easily
-nnoremap <S-Down> :m .+1<CR>==
-nnoremap <S-Up> :m .-2<CR>==
-inoremap <S-Down> <Esc>:m .+1<CR>==gi
-inoremap <S-Up> <Esc>:m .-2<CR>==gi
-vnoremap <S-Down> :m '>+1<CR>gv=gv
-vnoremap <S-Up> :m '<-2<CR>gv=gv
 " navigate between multiple open files
 nnoremap <leader><Right> :tabnext<CR>
 nnoremap <leader><Left> :tabprevious<CR>
@@ -115,18 +108,15 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 
 " calls Ag.vim with the word under cursor
-nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
+nnoremap <Leader>ag :Ag<CR>
 
 " FZF
 noremap <silent> <C-p> :GFiles -co --exclude-standard<CR>
-noremap <silent> <leader>h :History<CR>
-" nnoremap <leader>c :Commits<CR>
-
-" GitGutter
-nnoremap <silent> <leader>gg :GitGutterSignsToggle<CR>
+noremap <silent> <C-h> :History<CR>
+" nnoremap <silent> <C-c> :Commits<CR>
 
 " Copy to system clipboard (with meta-C support)
-vnoremap <leader>y "+y<CR>
+vnoremap <leader>c "+y<CR>
 vnoremap <M-c> "+y<CR>
 
 " Check syntax stack for cursor position
@@ -148,7 +138,6 @@ let g:netrw_home=expand('~/.cache/vim')
 " ---------------------- "
 
 " Utility function to check if the plugin is enabled
-
 function! PlugLoaded(name)
   return (
         \ has_key(g:plugs, a:name) &&
@@ -157,8 +146,12 @@ function! PlugLoaded(name)
 endfunction
 
 " COC
-
 if PlugLoaded("coc.nvim")
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
   " other plugin before putting this into your config.
@@ -167,11 +160,6 @@ if PlugLoaded("coc.nvim")
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
 
   " Make <CR> auto-select the first completion item and notify coc.nvim to
   " format on enter, <cr> could be remapped by other vim plugin
@@ -233,7 +221,6 @@ if PlugLoaded("coc.nvim")
 endif
 
 " ALE - Asynchronous Lint Engine
-
 if PlugLoaded("ale")
   filetype plugin on
   filetype plugin indent on
