@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
 local cmp = require('cmp')
 
 lsp.preset('recommended')
@@ -9,8 +10,9 @@ lsp.ensure_installed({
   'lua_ls',
 })
 
-lsp.on_attach(function(_, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+lsp.on_attach(function(client, bufnr)
+  -- Custom keymaps
+  local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
@@ -23,29 +25,52 @@ lsp.on_attach(function(_, bufnr)
 
   vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+
+  -- Autoformat
+  if client.supports_method('textDocument/formatting') then
+    require('lsp-format').on_attach(client)
+  end
 end)
 
 cmp.setup({
   mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = true}),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
 })
 
+-- Configure javascript language server
+lspconfig.eslint.setup {
+  on_attach = function(_, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+}
+
+-- Configure typescript language server
+lspconfig.tsserver.setup {
+  filetypes = {
+    'typescript',
+    'typescriptreact',
+    'typescript.tsx',
+  }
+}
+
 -- Configure lua language server
-require'lspconfig'.lua_ls.setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
-				-- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
       },
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
       },
     },
   },
 }
 
 lsp.setup()
-
