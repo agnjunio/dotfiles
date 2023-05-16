@@ -50,10 +50,10 @@ lspconfig.eslint.setup {
 
 -- Configure typescript language server
 lspconfig.tsserver.setup {
-  filetypes = {
-    'typescript',
-    'typescriptreact',
-    'typescript.tsx',
+  init_options = {
+    preferences = {
+      disableSuggestions = true
+    }
   }
 }
 
@@ -72,5 +72,8 @@ lspconfig.lua_ls.setup {
     },
   },
 }
+
+-- Configure null_ls to support other plugins like prettier
+require("null-ls").setup()
 
 lsp.setup()

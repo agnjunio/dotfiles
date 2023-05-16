@@ -52,6 +52,8 @@ return require('packer').startup(function(use)
       { 'lukas-reineke/lsp-format.nvim' } -- I like it
     }
   }
+
+  -- Prettier
   use {
     'MunifTanjim/prettier.nvim',
     requires = {
@@ -59,6 +61,8 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- Comments
+  use "terrortylor/nvim-comment"
 
   -- Diagnostics
   use {
