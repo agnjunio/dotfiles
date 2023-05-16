@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
       { 'L3MON4D3/LuaSnip' },     -- Required
 
       -- Autoformat
-      { 'lukas-reineke/lsp-format.nvim' } -- I like it
+      { 'lukas-reineke/lsp-format.nvim' }, -- I like it
     }
   }
 
@@ -57,11 +57,11 @@ return require('packer').startup(function(use)
   use {
     'MunifTanjim/prettier.nvim',
     requires = {
-      { 'jose-elias-alvarez/null-ls.nvim' },
+      { 'jose-elias-alvarez/null-ls.nvim' }, -- Required
     }
   }
 
-  -- Comments
+  -- Commenter
   use "terrortylor/nvim-comment"
 
   -- Diagnostics
@@ -69,4 +69,7 @@ return require('packer').startup(function(use)
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
   }
+
+  -- TMux integration
+  use "aserowy/tmux.nvim"
 end)
