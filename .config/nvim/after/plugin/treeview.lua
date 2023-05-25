@@ -56,7 +56,7 @@ local function on_attach(bufnr)
   -- vim.keymap.set('n', 'S', api.tree.search_node, opts('Search'))
   -- vim.keymap.set('n', 'U', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
   -- vim.keymap.set('n', 'W', api.tree.collapse_all, opts('Collapse'))
-  vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
+  -- vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
   -- vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
   -- vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
   -- vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
@@ -74,3 +74,6 @@ require("nvim-tree").setup {
   },
   on_attach = on_attach,
 }
+
+-- Toggle treeview
+vim.keymap.set("n", "<leader><Tab>", ":NvimTreeToggle<CR>")
