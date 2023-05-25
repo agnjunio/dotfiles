@@ -15,7 +15,7 @@ lsp.on_attach(function(client, bufnr)
   -- Custom keymaps
   local opts = { buffer = bufnr, remap = false }
 
-  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
   vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
