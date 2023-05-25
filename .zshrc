@@ -58,6 +58,7 @@ ZSH_CUSTOM=$HOME/.config/oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   colored-man-pages
+  safe-paste
   themes
   z
 )
