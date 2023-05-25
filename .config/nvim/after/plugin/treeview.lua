@@ -64,6 +64,8 @@ local function on_attach(bufnr)
   -- END_DEFAULT_ON_ATTACH
 
   -- Custom mappings
+  vim.keymap.set('n', '..', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
+  vim.keymap.set('n', '.i', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
   vim.keymap.set('n', 'y', api.fs.copy.node, opts('Copy'))
   vim.keymap.set('n', '%', api.fs.create, opts('Create'))
 end
