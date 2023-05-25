@@ -5,6 +5,13 @@ local function on_attach(bufnr)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
+  local function cmd(command)
+    return function()
+      local node = api.tree.get_node_under_cursor()
+      vim.cmd(command .. ' ' .. node.absolute_path)
+    end
+  end
+
 
   -- Default mappings. Feel free to modify or remove as you wish.
   --
@@ -68,6 +75,11 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '.i', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
   vim.keymap.set('n', 'y', api.fs.copy.node, opts('Copy'))
   vim.keymap.set('n', '%', api.fs.create, opts('Create'))
+
+  -- Git mappings
+  vim.keymap.set('n', 'ga', cmd('Git add'), opts('Git: Add file'))
+  vim.keymap.set('n', 'gr', cmd('Git reset'), opts('Git: Reset file'))
+  vim.keymap.set('n', 'gco', cmd('Git checkout'), opts('Git: Checkout file'))
 end
 
 require("nvim-tree").setup {
