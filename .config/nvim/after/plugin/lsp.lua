@@ -5,9 +5,10 @@ local cmp = require('cmp')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-  'tsserver',
   'eslint',
+  'gopls',
   'lua_ls',
+  'tsserver',
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -38,7 +39,6 @@ cmp.setup({
   },
 })
 
--- Configure javascript language server
 lspconfig.eslint.setup {
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -48,16 +48,8 @@ lspconfig.eslint.setup {
   end,
 }
 
--- Configure typescript language server
-lspconfig.tsserver.setup {
-  init_options = {
-    preferences = {
-      disableSuggestions = true
-    }
-  }
-}
+lspconfig.gopls.setup {}
 
--- Configure lua language server
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
@@ -71,6 +63,14 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+lspconfig.tsserver.setup {
+  init_options = {
+    preferences = {
+      disableSuggestions = true
+    }
+  }
 }
 
 -- Configure null_ls to support other plugins like prettier
