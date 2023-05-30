@@ -3,7 +3,7 @@ window:
   startup_mode: Maximized
 font:
   normal:
-    family: Noto Mono for Powerline
+    family: NotoMono Nerd Font
     style: Regular
   size: 11
 colors:
