@@ -2,6 +2,8 @@
 
 echo "Syncing dotfiles..."
 
+bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
+
 backup_dot_file() {
   local f=$1
   local dir=$(dirname "$bkpdir/`echo $f | sed "s,$HOME/,,"`")
@@ -16,7 +18,7 @@ sync_dot_file() {
   local src=$PWD/$file
   local tgt=$HOME/$link
 
-  echo -n "Installing ${src}: "
+  echo -n "# Installing ${src}: "
   if [[ -L $tgt && `readlink $tgt` = $src ]]; then
     echo "skipping..."
     return 0
@@ -50,12 +52,10 @@ sync_dot_files() {
     done
     [[ $ignored == "0" ]] && sync_dot_file $file
   done
+
+  echo "# Dotfiles synchronized successfully."
   return 0
 }
 
-bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
+sync_dot_files
 
-sync_dot_files &&
-
-echo "Dotfiles synchronized successfully."
-unset bkpdir
