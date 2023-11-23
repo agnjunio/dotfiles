@@ -5,5 +5,7 @@ require('nvim_comment').setup({
 -- Custom mappings for commenting code
 vim.keymap.set("n", "<leader>/", ":CommentToggle<CR>")
 vim.keymap.set("v", "<leader>/", ":CommentToggle<CR>gv=gv")
+vim.keymap.set("n", "<C-/>", ":CommentToggle<CR>")
+vim.keymap.set("v", "<C-/>", ":CommentToggle<CR>gv=gv")
 vim.keymap.set("n", "<C-_>", ":CommentToggle<CR>")
 vim.keymap.set("v", "<C-_>", ":CommentToggle<CR>gv=gv")
