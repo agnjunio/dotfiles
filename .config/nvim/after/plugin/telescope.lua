@@ -4,9 +4,15 @@ local trouble = require('trouble.providers.telescope')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<C-t>', trouble.open_with_trouble, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fs', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
+vim.keymap.set('n', '<leader>fd', function()
+	builtin.live_grep({ search = vim.fn.input("Grep > ") });
 end)
+vim.keymap.set('n', '<leader>fh', builtin.oldfiles, {})
+
+vim.keymap.set('n', '<leader>vr', builtin.lsp_references, {});
+vim.keymap.set('n', '<leader>vws', builtin.lsp_dynamic_workspace_symbols, {});
+vim.keymap.set('n', '<leader>vd', builtin.lsp_definitions, {});
+vim.keymap.set('n', '<leader>vt', builtin.lsp_definitions, {});
 
 require'nvim-web-devicons'.setup {
 	-- globally enable different highlight colors per icon (default to true)

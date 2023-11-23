@@ -19,4 +19,3 @@ prettier.setup({
   },
 })
 
-vim.keymap.set("n", "<C-f>", ":Prettier<CR>");

@@ -33,7 +33,9 @@ vim.keymap.set("n", "<leader>D", "\"_d")
 -- Disable Q
 vim.keymap.set("n", "Q", "<nop>")
 
--- Replace current word
+-- Search current word without submitting
+vim.keymap.set("n", "<leader>f", [[/<C-r><C-w>]])
+-- Replace current word without submitting
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Make current file executable
