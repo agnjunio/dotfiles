@@ -1,3 +1,5 @@
+require("anjek.colors")
 require("anjek.remap")
 require("anjek.set")
 require("anjek.splits")
+require("anjek.lazy")

@@ -36,7 +36,7 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Search current word without submitting
 vim.keymap.set("n", "<leader>f", [[/<C-r><C-w>]])
 -- Replace current word without submitting
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

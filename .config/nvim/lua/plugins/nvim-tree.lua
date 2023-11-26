@@ -83,12 +83,20 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'gco', cmd('Git checkout'), opts('Git: Checkout file'))
 end
 
-require("nvim-tree").setup {
-  filters = {
-    dotfiles = true,
+return {
+  'nvim-tree/nvim-tree.lua',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
   },
-  on_attach = on_attach,
+  keys = {
+    { "<leader><Tab>", ":NvimTreeToggle<CR>" }
+  },
+  config = function()
+    require("nvim-tree").setup({
+      filters = {
+        dotfiles = true,
+      },
+      on_attach = on_attach,
+    })
+  end
 }
-
--- Toggle treeview
-vim.keymap.set("n", "<leader><Tab>", ":NvimTreeToggle<CR>")
