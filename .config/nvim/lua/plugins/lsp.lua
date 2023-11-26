@@ -18,6 +18,8 @@ return {
     'williamboman/mason.nvim',
     lazy = false,
     config = true,
+    cmd = "Mason",
+    build = ":MasonUpdate",
   },
   -- Autocmpletion
   {
@@ -50,15 +52,29 @@ return {
       'LspStart',
     },
     event = {
-      'BufReadPre',
-      'BufNewFile',
+      'BufRead',
+      'BufWrite',
     },
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'williamboman/mason-lspconfig.nvim',
       'lukas-reineke/lsp-format.nvim',
     },
-    config = function()
+    opts = {
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
+          prefix = "icons"
+        },
+        severity_sort = true,
+      },
+    },
+    config = function(_, opts)
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
       -- This is where all the LSP shenanigans will live
       local lsp_zero = require('lsp-zero')
       lsp_zero.extend_lspconfig()
@@ -67,22 +83,22 @@ return {
         -- lsp_zero.default_keymaps({buffer = bufnr})
 
         -- Custom keymaps
-        local opts = { buffer = bufnr, remap = false }
+        local args = { buffer = bufnr, remap = false }
 
-        vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<F5>", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("v", "<leader>a", function() vim.lsp.buf.range_code_action() end, opts)
-        vim.keymap.set("v", "<F5>", function() vim.lsp.buf.range_code_action() end, opts)
-        vim.keymap.set("n", "H", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, args)
+        vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, args)
+        vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, args)
+        vim.keymap.set("n", "<F5>", function() vim.lsp.buf.code_action() end, args)
+        vim.keymap.set("v", "<leader>a", function() vim.lsp.buf.range_code_action() end, args)
+        vim.keymap.set("v", "<F5>", function() vim.lsp.buf.range_code_action() end, args)
+        vim.keymap.set("n", "H", function() vim.lsp.buf.hover() end, args)
 
         -- Handled by telescope
-        -- vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
-        -- vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        -- vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, args)
+        -- vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.definition() end, args)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, args)
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, args)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, args)
 
         -- Autoformat
         if client.supports_method('textDocument/formatting') then
