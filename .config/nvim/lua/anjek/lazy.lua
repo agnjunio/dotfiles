@@ -14,11 +14,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	spec = "plugins",
-	defaults = {
-		lazy = true,
-	},
-	ui = {
-		size = { width = 0.6, height = 0.6 },
-	},
+  spec = "plugins",
+  defaults = {
+    lazy = true,
+  },
+  ui = {
+    size = { width = 0.6, height = 0.6 },
+  },
 })
