@@ -42,12 +42,12 @@ return {
   {
     "b3nj5m1n/kommentary",
     keys = {
-      { "<leader>/", "<Plug>kommentary_line_default" },
-      { "<C-_>",     "<Plug>kommentary_line_default" },
-      { "<C-/>",     "<Plug>kommentary_line_default" },
-      { "<leader>/", "<Plug>kommentary_visual_default", mode = "v" },
-      { "<C-_>",     "<Plug>kommentary_visual_default", mode = "v" },
-      { "<C-/>",     "<Plug>kommentary_visual_default", mode = "v" },
+      { "<leader>/", "<Plug>kommentary_line_default",   mode = "n", desc = "Comment Line" },
+      { "<C-_>",     "<Plug>kommentary_line_default",   mode = "n", desc = "Comment Line" },
+      { "<C-/>",     "<Plug>kommentary_line_default",   mode = "n", desc = "Comment Line" },
+      { "<leader>/", "<Plug>kommentary_visual_default", mode = "v", desc = "Comment Line(s)" },
+      { "<C-_>",     "<Plug>kommentary_visual_default", mode = "v", desc = "Comment Line(s)" },
+      { "<C-/>",     "<Plug>kommentary_visual_default", mode = "v", desc = "Comment Line(s)" },
     },
   }
 }

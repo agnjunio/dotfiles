@@ -83,22 +83,24 @@ return {
         -- lsp_zero.default_keymaps({buffer = bufnr})
 
         -- Custom keymaps
-        local args = { buffer = bufnr, remap = false }
+        local function args(desc)
+          return { buffer = bufnr, remap = false, desc = desc }
+        end
 
-        vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, args)
-        vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, args)
-        vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, args)
-        vim.keymap.set("n", "<F5>", function() vim.lsp.buf.code_action() end, args)
-        vim.keymap.set("v", "<leader>a", function() vim.lsp.buf.range_code_action() end, args)
-        vim.keymap.set("v", "<F5>", function() vim.lsp.buf.range_code_action() end, args)
-        vim.keymap.set("n", "H", function() vim.lsp.buf.hover() end, args)
+        vim.keymap.set("n", "<leader>h", function() vim.lsp.buf.signature_help() end, args("Signature Help"))
+        vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, args("Rename"))
+        vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end, args("Code Action"))
+        vim.keymap.set("n", "<F5>", function() vim.lsp.buf.code_action() end, args("Code Action"))
+        vim.keymap.set("v", "<leader>a", function() vim.lsp.buf.range_code_action() end, args("Code Action"))
+        vim.keymap.set("v", "<F5>", function() vim.lsp.buf.range_code_action() end, args("Code Action"))
+        vim.keymap.set("n", "H", function() vim.lsp.buf.hover() end, args("Hover"))
 
         -- Handled by telescope
-        -- vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, args)
-        -- vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.definition() end, args)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, args)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, args)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, args)
+        -- vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, args())
+        -- vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.definition() end, args())
+        -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, args())
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, args("Go To Next"))
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, args("Go To Prev"))
 
         -- Autoformat
         if client.supports_method('textDocument/formatting') then

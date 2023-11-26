@@ -11,18 +11,18 @@ return {
     builtin = require("telescope.builtin")
   end,
   keys = {
-    { '<C-p>',       function() builtin.find_files() end },
-    { '<C-f>',       function() builtin.live_grep() end },
-    { '<leader>fg',  function() builtin.git_files() end },
-    { '<leader>ff',  function() builtin.buffers() end },
-    { '<leader>fh',  function() builtin.oldfiles() end },
-    { '<leader>fc',  function() builtin.colorscheme() end },
+    { '<C-p>',       function() builtin.find_files() end,                    desc = "Find Files" },
+    { '<C-f>',       function() builtin.live_grep() end,                     desc = "Live Grep" },
+    { '<leader>fg',  function() builtin.git_files() end,                     desc = "Git files" },
+    { '<leader>ff',  function() builtin.buffers() end,                       desc = "Open buffers" },
+    { '<leader>fh',  function() builtin.oldfiles() end,                      desc = "History" },
+    { '<leader>fc',  function() builtin.colorscheme() end,                   desc = "Color Scheme" },
 
     -- LSP Key Bindings
-    { '<leader>vr',  function() builtin.lsp_references() end },
-    { '<leader>vws', function() builtin.lsp_dynamic_workspace_symbols() end },
-    { '<leader>vd',  function() builtin.lsp_definitions() end },
-    { '<leader>vt',  function() builtin.lsp_definitions() end },
+    { '<leader>vr',  function() builtin.lsp_references() end,                desc = "LSP References" },
+    { '<leader>vws', function() builtin.lsp_dynamic_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    { '<leader>vd',  function() builtin.lsp_definitions() end,               desc = "LSP Definitions" },
+    { '<leader>vt',  function() builtin.lsp_definitions() end,               desc = "LSP Definitions" },
   },
 
   opts = {
