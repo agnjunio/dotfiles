@@ -6,6 +6,7 @@ return {
   cmd = "WhichKey",
   keys = {
     "<leader>",
+    { "<F3>", ":WhichKey<CR>", desc = "Open this help" },
   },
   init = function()
     vim.o.timeout = true
