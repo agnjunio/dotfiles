@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
 
 -- Move lines easily in visual mode
-vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line up" })
+vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line down" })
 
 -- Append next line to current
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Append next line" })
 
 -- Keep cursor in the middle when searching
 vim.keymap.set("n", "n", "nzzzv")
@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>d", "\"_d", { desc = "Delete" })
 vim.keymap.set("n", "<leader>D", "\"_d", { desc = "Delete" })
 
 -- Disable Q
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>", { desc = "<disabled>" })
 
 -- Search current word without submitting
 vim.keymap.set("n", "<leader>f", [[/<C-r><C-w>]], { desc = "Search current word" })
