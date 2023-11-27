@@ -6,7 +6,18 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-symbols.nvim',
+    'nvim-telescope/telescope-ui-select.nvim', -- Use Telescope for vim.select (Code Actions, etc)
   },
+  config = function()
+    require("telescope").setup {
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown {}
+        }
+      }
+    }
+    require("telescope").load_extension("ui-select")
+  end,
   init = function()
     builtin = require("telescope.builtin")
   end,
@@ -24,13 +35,12 @@ return {
     { '<leader>vd',  function() builtin.lsp_definitions() end,               desc = "LSP Definitions" },
     { '<leader>vt',  function() builtin.lsp_definitions() end,               desc = "LSP Definitions" },
   },
-
   opts = {
     defaults = {
       layout_strategy = "horizontal",
       layout_config = { prompt_position = "top" },
       sorting_strategy = "ascending",
-      winblend = 0,
+      winblend = 1,
     },
   },
 }
