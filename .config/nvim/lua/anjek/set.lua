@@ -1,26 +1,68 @@
-vim.opt.autoread         = true
+local g                  = vim.g   -- Global variables
+local opt                = vim.opt -- Set options (global/buffer/windows-scoped)
 
-vim.opt.splitbelow       = true
-vim.opt.splitright       = true
+-- Editor
+opt.autoread             = true
+opt.mouse                = "a"
+opt.clipboard            = 'unnamedplus'               -- Copy/paste to system clipboard
+opt.swapfile             = false                       -- Don't use swapfile
+opt.completeopt          = 'menuone,noinsert,noselect' -- Autocomplete options
+opt.scrolloff            = 8                           -- Always show X lines below and above
 
-vim.opt.number           = true
+-- UI
+opt.number               = true     -- Show line number
+opt.showmatch            = true     -- Highlight matching parenthesis
+opt.foldmethod           = 'marker' -- Enable folding (default 'foldmarker')
+opt.colorcolumn          = '80'     -- Line lenght marker at 80 columns
+opt.splitright           = true     -- Vertical split to the right
+opt.splitbelow           = true     -- Horizontal split to the bottom
+opt.ignorecase           = true     -- Ignore case letters when search
+opt.smartcase            = true     -- Ignore lowercase for the whole pattern
+opt.wrap                 = false    -- Line wrapping
+opt.linebreak            = true     -- Wrap on word boundary
+opt.termguicolors        = true     -- Enable 24-bit RGB colors
+opt.laststatus           = 3        -- Set global statusline
 
-vim.opt.expandtab        = true
-vim.opt.shiftwidth       = 2
-vim.opt.smartindent      = true
-vim.opt.softtabstop      = 2
-vim.opt.tabstop          = 2
+-- Tabs, Indents
+opt.expandtab            = true -- Use spaces instead of tabs
+opt.shiftwidth           = 2    -- Shift X spaces when tab
+opt.softtabstop          = 2
+opt.tabstop              = 2    -- 1 tab == X spaces
+opt.smartindent          = true -- Autoindent new lines
 
-vim.opt.wrap             = false
+-- Search
+opt.hlsearch             = true
+opt.incsearch            = true
 
-vim.opt.hlsearch         = true
-vim.opt.incsearch        = true
+-- Disabled plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "spellfile_plugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  "tutor",
+  "rplugin",
+  "synmenu",
+  "optwin",
+  "compiler",
+  "bugreport",
+  "ftplugin",
+}
 
-vim.opt.termguicolors    = true
-
-vim.opt.scrolloff        = 8
-vim.opt.colorcolumn      = "80"
-
--- Disable netrw
-vim.g.loaded_netrwPlugin = 0
-vim.g.loaded_netrw       = 0
+for _, plugin in pairs(disabled_built_ins) do
+  g["loaded_" .. plugin] = 1
+end
