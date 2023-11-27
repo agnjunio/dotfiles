@@ -11,17 +11,6 @@ return {
     end,
   },
 
-  -- Topbar
-  {
-    'akinsho/bufferline.nvim',
-    version = "*",
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    event = "BufRead",
-    config = true,
-  },
-
   -- Indent lines with scope highlight
   {
     "lukas-reineke/indent-blankline.nvim",

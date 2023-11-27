@@ -15,10 +15,13 @@ return {
   opts = {
     defaults = {
       mode = { "n", "v" },
-      ["<leader>f"] = { name = "+file/find" },
-      ["<leader>g"] = { name = "+git" },
-      ["<leader>v"] = { name = "+lsp" },
-      ["<leader>vw"] = { name = "+lsp workspace" },
+      ["<leader>b"] = { name = "+Buffer" },
+      ["<leader>bc"] = { name = "+Buffer: Close" },
+      ["<leader>bg"] = { name = "+Buffer: Go To" },
+      ["<leader>f"] = { name = "+File/Find" },
+      ["<leader>g"] = { name = "+Git" },
+      ["<leader>v"] = { name = "+LSP" },
+      ["<leader>vw"] = { name = "+LSP: Workspace" },
     },
   },
   config = function(_, opts)
