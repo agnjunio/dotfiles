@@ -92,12 +92,13 @@ return {
   keys = {
     { "<leader><Tab>", ":NvimTreeToggle<CR>" }
   },
-  config = function()
-    require("nvim-tree").setup({
-      filters = {
-        dotfiles = true,
-      },
-      on_attach = on_attach,
-    })
-  end
+  opts = {
+    filters = {
+      dotfiles = true,
+    },
+    on_attach = on_attach,
+    update_focused_file = {
+      enable = true,
+    }
+  },
 }
