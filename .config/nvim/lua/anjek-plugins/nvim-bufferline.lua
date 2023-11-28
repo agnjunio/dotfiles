@@ -68,7 +68,7 @@ return {
   keys = {
     { "<C-S-PageUp>",   ":BufferLineMovePrev<CR>",     desc = "Buffer: Swap with Previous" },
     { "<C-S-PageDown>", ":BufferLineMoveNext<CR>",     desc = "Buffer: Swap with Next" },
-    { "<leader>bcc",    ":bd<CR>",                     desc = "Buffer: Close Current" },
+    { "<leader>bcc",    ":bd<CR><CMD>bprevious<CR>",   desc = "Buffer: Close Current" },
     { "<leader>bca",    ":BufferLineCloseLeft<CR>",    desc = "Buffer: Close Left" },
     { "<leader>bcd",    ":BufferLineCloseRight<CR>",   desc = "Buffer: Close Right" },
     { "<leader>bco",    ":BufferLineCloseOthers<CR>",  desc = "Buffer: Close Others" },
