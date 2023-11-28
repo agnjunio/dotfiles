@@ -45,7 +45,7 @@ local function on_attach(bufnr)
   -- vim.keymap.set('n', '[e', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
   -- vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
   -- vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
-  vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
+  -- vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
   -- vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
   -- vim.keymap.set('n', 'H', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
   -- vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
@@ -71,6 +71,7 @@ local function on_attach(bufnr)
   -- END_DEFAULT_ON_ATTACH
 
   -- Custom mappings
+  vim.keymap.set('n', 'h', api.tree.toggle_help, opts('Help'))
   vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
   vim.keymap.set('n', '..', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
   vim.keymap.set('n', '.i', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
@@ -90,13 +91,27 @@ return {
   },
   lazy = false,
   keys = {
-    { "<leader><Tab>", ":NvimTreeToggle<CR>" }
+    { "<leader><Tab>",    ":NvimTreeToggle<CR>",    desc = "File Explorer: Toggle view" },
+    { "<leader>f<Right>", ":NvimTreeResize +5<CR>", desc = "File Explorer: Increase width" },
+    { "<leader>f<Left>",  ":NvimTreeResize -5<CR>", desc = "File Explorer: Decrease width" },
   },
   opts = {
+    on_attach = on_attach,
+    disable_netrw = true,
+    sync_root_with_cwd = true,
+    view = {
+      width = {
+        min = 30,
+        max = "30%",
+        padding = 2,
+      }
+    },
+    renderer = {
+      highlight_git = true,
+    },
     filters = {
       dotfiles = true,
     },
-    on_attach = on_attach,
     update_focused_file = {
       enable = true,
     }
