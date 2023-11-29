@@ -67,13 +67,15 @@ return {
         virtual_text = {
           spacing = 4,
           source = "if_many",
-          prefix = "icons"
         },
         severity_sort = true,
       },
     },
     config = function(_, opts)
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+      -- Auto diagnostic on hover
+      -- vim.o.updatetime = 250
+      -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
       -- This is where all the LSP shenanigans will live
       local lsp_zero = require('lsp-zero')
@@ -159,5 +161,5 @@ return {
         }
       }
     end,
-  }
+  },
 }
