@@ -8,5 +8,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
     vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = "none" })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = "none" })
   end,
 })
