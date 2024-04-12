@@ -28,6 +28,7 @@ return {
     { '<leader>ff',  function() builtin.buffers() end,                       desc = "Open buffers" },
     { '<leader>fh',  function() builtin.oldfiles() end,                      desc = "History" },
     { '<leader>fc',  function() builtin.colorscheme() end,                   desc = "Color Scheme" },
+    { '<leader>fs',  function() builtin.grep_string() end,                   desc = "Find String" },
 
     -- LSP Key Bindings
     { '<leader>vr',  function() builtin.lsp_references() end,                desc = "LSP References" },
