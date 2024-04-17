@@ -9,6 +9,7 @@ packages=(
     tig
     tmux
     zsh
+    ripgrep
 )
 
 # Let's do it!

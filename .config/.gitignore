@@ -3,6 +3,7 @@
 # But allow some subdirectories
 !*/
 !.gitignore
+!.ripgreprc
 
 # Allow
 !alacritty/**
