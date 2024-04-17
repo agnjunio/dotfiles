@@ -11,6 +11,7 @@ opt.scrolloff            = 8                           -- Always show X lines be
 
 -- UI
 opt.number               = true     -- Show line number
+opt.signcolumn           = 'yes'    -- Always show signal column (E, W, +)
 opt.showmatch            = true     -- Highlight matching parenthesis
 opt.foldmethod           = 'marker' -- Enable folding (default 'foldmarker')
 opt.colorcolumn          = '80'     -- Line lenght marker at 80 columns

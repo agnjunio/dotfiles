@@ -14,7 +14,7 @@ return {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown {}
         }
-      }
+      },
     }
     require("telescope").load_extension("ui-select")
   end,
@@ -22,7 +22,7 @@ return {
     builtin = require("telescope.builtin")
   end,
   keys = {
-    { '<C-p>',       function() builtin.find_files() end,                    desc = "Find Files" },
+    { '<C-p>',       function() builtin.find_files({ hidden = true }) end,   desc = "Find Files" },
     { '<C-f>',       function() builtin.live_grep() end,                     desc = "Live Grep" },
     { '<leader>fg',  function() builtin.git_files() end,                     desc = "Git files" },
     { '<leader>ff',  function() builtin.buffers() end,                       desc = "Open buffers" },
