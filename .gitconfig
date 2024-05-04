@@ -17,3 +17,5 @@
 	submodule = log
 [pager]
 	branch = 
+[init]
+	defaultBranch = main
