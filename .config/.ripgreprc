@@ -13,6 +13,7 @@ web:*.{html,css,js}*
 #--glob=!test/*
 --glob=!*.{spec,test}.{ts,js}
 --glob=!**/package-lock.json
+--glob=!.git
 
 # Because who cares about case!?
 --smart-case

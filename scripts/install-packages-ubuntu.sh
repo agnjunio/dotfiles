@@ -7,6 +7,7 @@ packages=(
     fonts-powerline
     git
     neovim
+    ripgrep
     tig
     tmux
     zsh
