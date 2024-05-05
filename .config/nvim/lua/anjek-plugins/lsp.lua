@@ -118,6 +118,7 @@ return {
           'eslint',
           'gopls',
           'lua_ls',
+          'pylsp',
           'tsserver',
         },
       })
@@ -152,6 +153,10 @@ return {
           },
         },
       }
+
+      lspconfig.pylsp.setup {}
+
+      lspconfig.qmlls.setup {}
 
       lspconfig.tsserver.setup {
         init_options = {
