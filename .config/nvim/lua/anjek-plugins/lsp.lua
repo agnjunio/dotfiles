@@ -119,6 +119,7 @@ return {
           'gopls',
           'lua_ls',
           'pylsp',
+          'html',
           'tsserver',
         },
       })
@@ -157,6 +158,8 @@ return {
       lspconfig.pylsp.setup {}
 
       lspconfig.qmlls.setup {}
+
+      lspconfig.html.setup {}
 
       lspconfig.tsserver.setup {
         init_options = {
