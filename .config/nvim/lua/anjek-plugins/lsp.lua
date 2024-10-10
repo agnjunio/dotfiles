@@ -120,7 +120,7 @@ return {
           'lua_ls',
           'pylsp',
           'html',
-          'tsserver',
+          'ts_ls',
         },
       })
 
@@ -161,7 +161,7 @@ return {
 
       lspconfig.html.setup {}
 
-      lspconfig.tsserver.setup {
+      lspconfig.ts_ls.setup {
         init_options = {
           preferences = {
             disableSuggestions = true
