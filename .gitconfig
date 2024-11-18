@@ -18,4 +18,7 @@
 [pager]
 	branch = 
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
+[includeIf "gitdir:~/atria-health-tech/"]
+  path = .gitconfig-atria
