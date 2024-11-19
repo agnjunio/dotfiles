@@ -120,7 +120,6 @@ return {
           'lua_ls',
           'pylsp',
           'html',
-          'ts_ls',
         },
       })
 
@@ -160,14 +159,6 @@ return {
       lspconfig.qmlls.setup {}
 
       lspconfig.html.setup {}
-
-      lspconfig.ts_ls.setup {
-        init_options = {
-          preferences = {
-            disableSuggestions = true
-          }
-        }
-      }
     end,
   },
 }
