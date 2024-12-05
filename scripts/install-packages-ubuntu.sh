@@ -3,6 +3,7 @@
 set -e
 
 packages=(
+    clang
     curl
     fonts-powerline
     git
