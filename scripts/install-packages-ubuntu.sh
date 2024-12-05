@@ -3,10 +3,14 @@
 set -e
 
 packages=(
+    bison
     clang
     curl
     fonts-powerline
+    gcc
     git
+    golang
+    make
     neovim
     ripgrep
     tig
@@ -28,7 +32,10 @@ install_packages ${packages[@]}
 echo "## Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "## Installing nvm (Node Version Manager)"
-bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh)"
+echo "## Installing volta (Node Version Manager)"
+curl https://get.volta.sh | bash
+
+echo "## Installing gvm (Go Version Manager)"
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
 echo "## Installation complete. You can now run the sync.sh script"
