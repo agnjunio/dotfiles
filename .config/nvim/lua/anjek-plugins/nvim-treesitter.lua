@@ -3,8 +3,8 @@ return {
   build = ":TSUpdate",
   event = "BufEnter",
   init = function()
-    vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
   end,
   config = function()
     require("nvim-treesitter.configs").setup({
