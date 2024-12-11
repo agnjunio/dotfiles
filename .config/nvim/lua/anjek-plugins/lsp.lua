@@ -118,8 +118,6 @@ return {
           'eslint',
           'gopls',
           'lua_ls',
-          'pylsp',
-          'html',
         },
       })
 
