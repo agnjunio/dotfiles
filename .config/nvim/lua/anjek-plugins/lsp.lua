@@ -1,5 +1,15 @@
 -- This is a collection of plugins that are intertwined to create the LSP experience
 
+local function typescript_organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+
+  vim.lsp.buf.execute_command(params)
+end
+
 return {
   -- LSP Client
   {
@@ -116,6 +126,7 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'eslint',
+          'typescript-language-server',
           'gopls',
           'lua_ls',
         },
@@ -124,13 +135,15 @@ return {
       -- LSP Server configs
       local lspconfig = require('lspconfig')
 
-      lspconfig.eslint.setup {
-        on_attach = function(_, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            -- command = "EslintFixAll",
-          })
-        end,
+      lspconfig.eslint.setup {}
+
+      lspconfig.ts_ls.setup {
+        commands = {
+          OrganizeImports = {
+            typescript_organize_imports,
+            description = "Organize Imports",
+          }
+        }
       }
 
       lspconfig.gopls.setup {}
