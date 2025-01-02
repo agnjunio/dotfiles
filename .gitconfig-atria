@@ -1,5 +1,0 @@
-[user]
-  name = Agnaldo Junior
-  email = agnaldo.junior@atria.org
-[core]
-  sshCommand = "ssh -i ~/.ssh/atria_rsa"

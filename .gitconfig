@@ -19,6 +19,3 @@
 	branch = 
 [init]
   defaultBranch = main
-
-[includeIf "gitdir:~/atria-health-tech/"]
-  path = .gitconfig-atria
