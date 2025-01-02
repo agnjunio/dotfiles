@@ -1,2 +1,3 @@
-export PATH="/home/anjek/.pixi/bin:$PATH"
+export PATH="$HOME/.pixi/bin:$PATH"
+
 
