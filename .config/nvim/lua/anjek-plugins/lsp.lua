@@ -126,7 +126,6 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'eslint',
-          'typescript-language-server',
           'gopls',
           'lua_ls',
         },

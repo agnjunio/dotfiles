@@ -73,6 +73,7 @@ return {
   -- Revamp messages, cmdline and popupmenus
   {
     "folke/noice.nvim",
+    enabled = false,
     event = "BufRead",
     dependencies = {
       "MunifTanjim/nui.nvim",
