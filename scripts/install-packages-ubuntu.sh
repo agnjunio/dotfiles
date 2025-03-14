@@ -6,6 +6,7 @@ packages=(
     bison
     clang
     curl
+    dos2unix
     fonts-powerline
     gcc
     git

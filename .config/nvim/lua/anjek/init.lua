@@ -1,3 +1,4 @@
+require("anjek.clipboard")
 require("anjek.colors")
 require("anjek.remap")
 require("anjek.set")
