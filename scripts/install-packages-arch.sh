@@ -46,3 +46,14 @@ fi
 
 echo "## Installing AUR packages..."
 yay -S ${packages_aur[@]}
+
+echo "## Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "## Installing volta (Node Version Manager)"
+curl https://get.volta.sh | bash
+
+echo "## Installing gvm (Go Version Manager)"
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+
+echo "## All packages installed. You can now proceed with sync.sh script."

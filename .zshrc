@@ -83,5 +83,13 @@ bindkey '^H' insert-last-command-output
 # Extensions
 for e in ~/.zsh.d/*.zsh; do source $e; done
 
-# Completions
-for c in ~/.zsh.d/completions/_*; do source $c; done
+# Completions using compinit
+# Add your custom completions BEFORE compinit
+fpath+=~/.zsh.d/completions
+
+# Prevent Oh My Zsh from running compinit a second time
+zstyle ':omz:lib:completion' load no
+
+# Now run it manually
+autoload -Uz compinit
+compinit
