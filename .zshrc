@@ -80,6 +80,9 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey '^H' insert-last-command-output
 
+# Binaries
+export PATH="$HOME/.bin:$PATH"
+
 # Extensions
 for e in ~/.zsh.d/*.zsh; do source $e; done
 

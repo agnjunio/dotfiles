@@ -1,0 +1,38 @@
+#!/bin/bash
+
+BAT_PATH="D:\\wsl-port-forward.bat"
+PORTS=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --bat)
+      shift
+      BAT_PATH="$1"
+      ;;
+    *)
+      PORTS+=("$1")
+      ;;
+  esac
+  shift
+done
+
+if [ ${#PORTS[@]} -eq 0 ]; then
+  echo "No ports provided. Example usage: wslports 5173 3000 --bat C:\\\\my-forward.bat"
+  exit 1
+fi
+
+# Check if running inside WSL
+if grep -qi microsoft /proc/version; then
+  WSL_IP=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1)
+
+  echo "WSL IP: $WSL_IP"
+  echo "Using .bat file: $BAT_PATH"
+  echo ""
+
+  PORT_STRING="${PORTS[*]}"
+  powershell.exe -Command "Start-Process -Verb runAs -FilePath '$BAT_PATH' -ArgumentList '$WSL_IP $PORT_STRING'"
+  echo "Forwarding ports $PORT_STRING to $WSL_IP"
+else
+  echo "Not running in WSL — skipping port forwarding."
+fi
+
