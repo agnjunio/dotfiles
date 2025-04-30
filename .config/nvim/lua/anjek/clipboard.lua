@@ -8,11 +8,11 @@ if is_wsl() then
     name = "win32yank",
     copy = {
       ["+"] = "clip.exe",
-      ["*"] = "win32yank.exe -i",
+      ["*"] = "clip.exe",
     },
     paste = {
       ["+"] = "powershell.exe -c Get-Clipboard | dos2unix",
-      ["*"] = "win32yank.exe -o | dos2unix",
+      ["*"] = "powershell.exe -c Get-Clipboard | dos2unix",
     },
     cache_enabled = 0,
   }
