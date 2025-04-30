@@ -9,4 +9,4 @@
 .tmux/plugins/*
 .tmux/sidebar/*
 .tmux/resurrect
-.zsh.d/secrets/*
+.zsh.d/secrets.zsh
