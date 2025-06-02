@@ -1,5 +1,9 @@
 return {
   "aserowy/tmux.nvim",
   lazy = false,
-  config = true,
+  config = {
+    copy_sync = {
+      enable = false
+    }
+  },
 }

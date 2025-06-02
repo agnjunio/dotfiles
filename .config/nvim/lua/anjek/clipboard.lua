@@ -11,10 +11,10 @@ if is_wsl() then
       ["*"] = "clip.exe",
     },
     paste = {
-      ["+"] = "powershell.exe -c Get-Clipboard | dos2unix",
-      ["*"] = "powershell.exe -c Get-Clipboard | dos2unix",
+      ["+"] = "bash -c \"powershell.exe -noprofile -command Get-Clipboard | tr -d '\\r'\"",
+      ["*"] = "bash -c \"powershell.exe -noprofile -command Get-Clipboard | tr -d '\\r'\"",
     },
-    cache_enabled = 0,
+    cache_enabled = 1,
   }
 else
   vim.g.clipboard = {
