@@ -1,3 +1,8 @@
+# Prevent loading zsh config on intergrated terminals
+if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
+  return
+fi
+
 function source_if_exists() {
   if [[ -f $1 ]]; then
     source $1
@@ -96,3 +101,4 @@ zstyle ':omz:lib:completion' load no
 # Now run it manually
 autoload -Uz compinit
 compinit
+
