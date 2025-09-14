@@ -1,5 +1,25 @@
 vim.g.mapleader = " "
 
+-- Toggle special characters with F2
+vim.keymap.set('n', '<F2>', function()
+  if vim.opt.list:get() then
+    vim.opt.list = false
+    print("Special characters hidden")
+  else
+    vim.opt.list = true
+    -- Customize how the characters look
+    vim.opt.listchars = {
+      eol = '↴',
+      tab = '»·',
+      trail = '·',
+      extends = '⟩',
+      precedes = '⟨',
+      nbsp = '␣',
+    }
+    print("Special characters shown")
+  end
+end, { desc = "Toggle special characters" })
+
 -- Move lines easily in visual mode
 vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line up" })
 vim.keymap.set("v", "<C-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line down" })
