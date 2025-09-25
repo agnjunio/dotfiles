@@ -1,3 +1,5 @@
+# Prevent loading zsh on non-interactive terminals
+[[ -o interactive ]] || return
 # Prevent loading zsh config on intergrated terminals
 if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "cursor" ]]; then
   return
